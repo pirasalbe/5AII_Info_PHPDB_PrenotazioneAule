@@ -22,14 +22,29 @@
 
 	<body>
             <div class="table-responsive">
+				<div class="jumbotron text-center"><h2>Sistema Prenotazione Aule</h2></div>
 			
+				<!--- header --->
+				<div class="navbar navbar-default navbar-fixed-top">
+					<div class="row">
+						<div class="col-sm-4">
+							<h4>ITIS ROSSI</h4>
+						</div>
+						<div class="col-sm-4">
+							Data: 
+						</div>
+						<div class="col-sm-4">
+							Login 
+						</div>
+					</div>
+				</div>
+			
+			
+				<br>
+				<!--- body --->
 				<form action="" method="post">
 				    
 				    <div class="container">
-    					
-    					<div class="row">
-    						<div class="jumbotron text-center"><h2>Query Musicisti</h2></div>
-    					</div>
 				
 						<div class="row">
 							<div class="col-sm-2">
