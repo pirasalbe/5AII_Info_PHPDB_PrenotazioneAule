@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Creato il: Mar 28, 2017 alle 09:11
+-- Creato il: Apr 03, 2017 alle 08:19
 -- Versione del server: 10.1.16-MariaDB
 -- Versione PHP: 5.6.24
 
@@ -29,7 +29,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `aula` (
   `numero` int(11) NOT NULL,
   `nome` varchar(20) NOT NULL,
-  `descrizione` varchar(20) DEFAULT NULL
+  `descrizione` varchar(20) DEFAULT NULL,
+  `type` enum('Attrezzatura Informatica','Aule speciali','Piano Rialzato','Primo Piano','Secondo Piano') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
