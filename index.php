@@ -3,13 +3,11 @@
 	$username = "root";
 	$password = "";
 	$dbname = "aule";
-	/* Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname);
-	// Check connection
-	if ($conn->connect_error) {
-		die("Connection failed: " . $conn->connect_error);
 	
-	$conn->close();*/
+	//Create connection
+	$conn = new mysqli($servername, $username, $password, $dbname);
+	
+	$conn->close();
 ?>
 
 <html>
@@ -26,17 +24,17 @@
 				<nav class="navbar navbar-default">
 					<div class="container-fluid">
 						<div class="navbar-header">
-							<a class="navbar-brand" href="#">Sistema Prenotazione Aule</a>
+							<a class="navbar-brand" href="index.php">Sistema Prenotazione Aule</a>
 						</div>
 						<ul class="nav navbar-nav">
-							<li><a href="#">Data</a></li>
+							<li><a href="#"><input type="date" name="data"> Vai a</a></li>
 							<li><a href="#">Login</a></li>
 						</ul>
 					</div>
 				</nav>
 			
-			
 				<br>
+				
 				<!--- body --->
 				<form action="" method="post">
 				    

@@ -26,4 +26,5 @@ PHP: connessione al DB, Session/Cookie, interfaccia web. <br><br><br>
 
 
 ** https://photos.google.com/photo/AF1QipNYNGlyZD9ASlnogDs7kG3dwsExMbqZMAvI_mmQ?hl=it <br>
+** https://172.18.0.238/web/day.php?day=03&month=04&year=2017 <br>
 ** HTTPS
