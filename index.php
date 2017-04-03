@@ -21,23 +21,19 @@
 	</head>
 
 	<body>
-            <div class="table-responsive">
-				<div class="jumbotron text-center"><h2>Sistema Prenotazione Aule</h2></div>
-			
+            <div class="table-responsive">			
 				<!--- header --->
-				<div class="navbar navbar-default navbar-fixed-top">
-					<div class="row">
-						<div class="col-sm-4">
-							<h4>ITIS ROSSI</h4>
+				<nav class="navbar navbar-default">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<a class="navbar-brand" href="#">Sistema Prenotazione Aule</a>
 						</div>
-						<div class="col-sm-4">
-							Data: 
-						</div>
-						<div class="col-sm-4">
-							Login 
-						</div>
+						<ul class="nav navbar-nav">
+							<li><a href="#">Data</a></li>
+							<li><a href="#">Login</a></li>
+						</ul>
 					</div>
-				</div>
+				</nav>
 			
 			
 				<br>
