@@ -28,6 +28,7 @@
 						</div>
 						<ul class="nav navbar-nav">
 							<li><a href="#"><input type="date" name="data"> Vai a</a></li>
+							<li><a href="#">Report</a></li>
 							<li><a href="#">Login</a></li>
 						</ul>
 					</div>
