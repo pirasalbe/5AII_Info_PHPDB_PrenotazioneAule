@@ -37,7 +37,18 @@
 				
 				<!--- body --->
 				<form action="" method="post">
-				    
+				
+					<!--- Class type --->
+					<div class="container navbar ">
+						<ul class="nav navbar-nav list-group-item-info">
+							<li><a href="#">Attrezzatura Informatica</a></li>
+							<li><a href="#">Aule-speciali</a></li>
+							<li><a href="#">Piano Rialzato - Aule</a></li>
+							<li><a href="#">Primo Piano - Aule</a></li>
+							<li><a href="#">Secondo Piano - Aule</a></li>
+						</ul>
+					</div>
+					
 				    <div class="container">
 				
 						<div class="row">
