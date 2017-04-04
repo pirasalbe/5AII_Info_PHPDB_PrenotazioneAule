@@ -1,5 +1,10 @@
 <?php
 	include("script/recursive.php");
+	
+	if($logged == 1){
+		session_destroy();
+		header("location: index.php");
+	}
 ?>
 
 <html>
@@ -19,7 +24,7 @@
 		<!--- body --->
 		
 		<!--- login --->
-		<form action="" method="post">
+		<form action="script/log.php" method="post">
 			<div class="container">
 				<div class="row form-group">
 					<div class="col-sm-2">

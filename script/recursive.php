@@ -1,6 +1,10 @@
 <?php
+	session_start();
+	
 	$logged = 0;
-
+	if(isset($_SESSION['user']))
+		$logged='1';
+	
 	function printNavbar(){
 		global $logged;
 		
@@ -27,6 +31,7 @@
 						</li>
 						
 						<li><a href='#'>Report</a></li>
+						<li><a href='#'>Admin</a></li>
 						<li><a href='login.php'>" . $log . "</a></li>
 					</ul>
 				</div>
