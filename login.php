@@ -3,7 +3,7 @@
 	
 	if($logged == 1){
 		session_destroy();
-		header("location: index.php");
+		header("location: index");
 	}
 ?>
 

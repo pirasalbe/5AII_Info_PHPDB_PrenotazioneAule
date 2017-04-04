@@ -34,10 +34,10 @@
 		if($stmt->fetch()){
 			$_SESSION['user'] = $user;
 			echo "Logged";
-			header("location: ../index.php");
+			header("location: ../index");
 		} else {
 			echo "Wrong password";
-			header("location: ../login.php");
+			header("location: ../login");
 		}
 
 		/* close statement */
