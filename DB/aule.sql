@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Creato il: Apr 03, 2017 alle 08:19
+-- Creato il: Apr 04, 2017 alle 08:42
 -- Versione del server: 10.1.16-MariaDB
 -- Versione PHP: 5.6.24
 
@@ -67,7 +67,7 @@ CREATE TABLE `prenotazioni` (
 CREATE TABLE `utenti` (
   `username` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL,
-  `attivo` enum('si','no') NOT NULL,
+  `admin` enum('si','no') NOT NULL,
   `nome` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
