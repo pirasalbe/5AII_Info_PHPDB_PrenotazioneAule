@@ -30,9 +30,9 @@
 							</ul>
 						</li>
 						
-						<li><a href='#'>Report</a></li>
+						<li><a href='report'>Report</a></li>
 						<li><a href='#'>Admin</a></li>
-						<li><a href='login.php'>" . $log . "</a></li>
+						<li><a href='login'>" . $log . "</a></li>
 					</ul>
 				</div>
 			</nav>";
