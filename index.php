@@ -15,7 +15,11 @@
 		<title>
 			Aule
 		</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</head>
 
 	<body>
@@ -28,6 +32,16 @@
 						</div>
 						<ul class="nav navbar-nav">
 							<li><a href="#"><input type="date" name="data"> Vai a</a></li>
+							
+							<li class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" href="#">Visualizzazione<span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a href="#">Giorni</a></li>
+									<li><a href="#">Settimane</a></li>
+									<li><a href="#">Mesi</a></li>
+								</ul>
+							</li>
+							
 							<li><a href="#">Report</a></li>
 							<li><a href="#">Login</a></li>
 						</ul>
@@ -37,91 +51,48 @@
 				<br>
 				
 				<!--- body --->
-				<form action="" method="post">
 				
-					<!--- Class type --->
-					<div class="container navbar ">
-						<ul class="nav navbar-nav list-group-item-info">
-							<li><a href="#">Attrezzatura Informatica</a></li>
-							<li><a href="#">Aule-speciali</a></li>
-							<li><a href="#">Piano Rialzato - Aule</a></li>
-							<li><a href="#">Primo Piano - Aule</a></li>
-							<li><a href="#">Secondo Piano - Aule</a></li>
-						</ul>
-					</div>
+				<!--- Class type --->
+				<div class="container navbar ">
+					<ul class="nav navbar-nav list-group-item-info">
+						<li><a href="#">Attrezzatura Informatica</a></li>
+						<li><a href="#">Aule-speciali</a></li>
+						<li><a href="#">Piano Rialzato - Aule</a></li>
+						<li><a href="#">Primo Piano - Aule</a></li>
+						<li><a href="#">Secondo Piano - Aule</a></li>
+					</ul>
+				</div>
+				
+				<!--- Days --->
+				<div class="container">
+				
+					<div class="row">
+						<div class="col-sm-4">
+						</div>
+						<div class="col-sm-4">
+							<a href="#"><h3>Martedi 4 Aprile 2017</h3></a>
+						</div>
+						<div class="col-sm-4">
+						</div>
+					</div>		
 					
-				    <div class="container">
+					<br>
 				
-						<div class="row">
-							<div class="col-sm-2">
-								<label for="cat">Categoria:</label>
-							</div>
-							<div class="col-sm-4">
-									<input type="text" class="form-control" name="cat">
-							</div>
-							<div class="col-sm-2">
-									<input class="btn btn-default" align="center" type="submit" name="categoria" value="Query Categoria">
-							</div>
-                        </div>	
-						
-						<br>
-						
-						<div class="row">
-							<div class="col-sm-2">
-								<label for="str">Strumenti:</label>
-							</div>
-							<div class="col-sm-4">
-									<input type="number" class="form-control" name="str">
-							</div>
-							<div class="col-sm-2">
-									<input class="btn btn-default" align="center" type="submit" name="strumenti" value="Query Strumenti">
-							</div>
-                        </div>
-						
-						<br>
-						
-						<div class="row">
-							<div class="col-sm-2">
-								<label for="mus">Musicisti:</label>
-							</div>
-							<div class="col-sm-4">
-									<input type="number" class="form-control" name="mus">
-							</div>
-							<div class="col-sm-2">
-									<input class="btn btn-default" align="center" type="submit" name="musicisti" value="Query Musicisti">
-							</div>
-                        </div>
-						
-						<br>
-						
-						<div class="row">
-							<div class="col-sm-2">
-								<label for="login">Sesso:</label>
-							</div>
-							<div class="col-sm-2">
-									<input type="checkbox" class="form-control" name="mas" checked>
-							</div>
-							<div class="col-sm-2">
-									<input type="checkbox" class="form-control" name="fem">
-							</div>
-							<div class="col-sm-2">
-									<input class="btn btn-default" align="center" type="submit" name="sesso" value="Query Sesso">
-							</div>
-                        </div>
-						
-						<br>
-						
-						<div class="row">
-							<div class="col-sm-2">
-								<label for="login">Risultato query:</label>
-							</div>
-							<div class="col-sm-4">
-							</div>
-                        </div>
-						
-    				</div>		
+					<div class="row">
+						<div class="col-sm-4">
+							<a href="#">Vai al giorno prima</a>
+						</div>
+						<div class="col-sm-4">
+							<a href="#">Vai a oggi</a>
+						</div>
+						<div class="col-sm-4">
+							<a href="#">Vai al giorno successivo</a>
+						</div>
+					</div>							
+				</div>		
 				
-				</form>
+				<!--- Weeks --->
+				<!--- Months --->
 			
             </div>
 	</body>
