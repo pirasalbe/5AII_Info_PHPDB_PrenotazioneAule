@@ -106,6 +106,55 @@
 		return $result;
 	}
 	
+	//user list
+	function messages(){
+		$sql = "SELECT * 
+			FROM messages
+			where primo=? 
+			order by secondo, timestamp";
+		
+		$conn = init();
+		
+		$result = null;
+		
+		if ($stmt = $conn->prepare($sql)) {
+
+			/* bind parameters for markers */
+			$stmt->bind_param("s", $_SESSION['user']);
+
+			/* execute query */
+			$stmt->execute();
+
+			/* instead of bind_result: */
+			$result = $stmt->get_result();
+		}
+		
+		close($conn);
+		
+		return $result;
+	}
+	
+	//send message
+	function sendMessage($user, $messaggio){
+		$sql = "insert into messages 
+				values(?,?,?,?)";
+		
+		$conn = init();
+		
+		$result = null;
+		
+		if ($stmt = $conn->prepare($sql)) {
+
+			/* bind parameters for markers */
+			$stmt->bind_param("ssss", $_SESSION['user'], $user, $messaggio, date("Y-m-d H:i:s"));
+
+			/* execute query */
+			$stmt->execute();
+		}
+		
+		close($conn);
+	}
+	
 	//close sql 
 	function close($conn){
 		$conn->close();
