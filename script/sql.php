@@ -52,6 +52,36 @@
 		close($conn);
 	}
 	
+	//am i an admin
+	function admin(){
+		$sql = "SELECT admin FROM utenti where username=?";
+		
+		$conn = init();
+		
+		if ($stmt = $conn->prepare($sql)) {
+
+			/* bind parameters for markers */
+			$stmt->bind_param("s", $_SESSION['user']);
+
+			/* execute query */
+			$stmt->execute();
+
+			/* bind result variables */
+			$stmt->bind_result($admin);
+
+			/* fetch value */
+			$stmt->fetch();
+
+			/* close statement */
+			$stmt->close();
+		}
+		
+		close($conn);
+		
+		if($admin == "si") return true;
+		return false;
+	}
+	
 	//look for my prenotazioni
 	function booking(){
 		$sql = "SELECT numero, nome, type, data 
@@ -110,7 +140,7 @@
 	function messages(){
 		$sql = "SELECT * 
 			FROM messages
-			where primo=? 
+			where primo=? || secondo=?
 			order by secondo, timestamp";
 		
 		$conn = init();
@@ -120,7 +150,7 @@
 		if ($stmt = $conn->prepare($sql)) {
 
 			/* bind parameters for markers */
-			$stmt->bind_param("s", $_SESSION['user']);
+			$stmt->bind_param("ss", $_SESSION['user'], $_SESSION['user']);
 
 			/* execute query */
 			$stmt->execute();

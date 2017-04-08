@@ -16,7 +16,17 @@
 
 	<body>	
 		<!--- header --->
-		<?php printNavbar(); ?>
+		<?php printNavbar(); 
+		if(admin())
+			echo "<div class='container navbar '>
+			<ul class='nav navbar-nav list-group-item-info'>
+				<li><a href='#'>Tool amministratore: </a></li>
+				<li><a href='#'>Prenotazioni</a></li>
+				<li><a href='#'>Utenti</a></li>
+			</ul>
+		</div>";
+			
+		?>
 		
 		<br>
 		
