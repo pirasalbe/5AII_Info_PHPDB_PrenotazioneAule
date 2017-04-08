@@ -42,10 +42,13 @@
 						if(isset($result) && $result != null) {
 							while ($row = $result->fetch_assoc()) {
 								echo "<tr>
-									<td>" . $row["numero"] . "</td>
-									<td>" . $row["nome"] . "</td>
-									<td>" . $row["type"] . "</td>
-									<td>" . $row["data"] . "</td>
+									<form action='script/deleteBooking'>
+										<td name='aula'>" . $row["numero"] . "</td>
+										<td>" . $row["nome"] . "</td>
+										<td>" . $row["type"] . "</td>
+										<td>" . $row["data"] . "</td>
+										<td><input type='submit' value='Elimina'></td>
+									</form>
 									</tr>";
 							}
 						}

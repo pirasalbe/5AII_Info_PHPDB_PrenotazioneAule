@@ -155,6 +155,27 @@
 		close($conn);
 	}
 	
+	//delete booking
+	function deleteBooking($user, $aula){
+		$sql = "delete from prenotazioni 
+				where aula=? and utente=?";
+		
+		$conn = init();
+		
+		$result = null;
+		
+		if ($stmt = $conn->prepare($sql)) {
+
+			/* bind parameters for markers */
+			$stmt->bind_param("ss", $user, $aula);
+
+			/* execute query */
+			$stmt->execute();
+		}
+		
+		close($conn);
+	}
+	
 	//close sql 
 	function close($conn){
 		$conn->close();
