@@ -8,9 +8,12 @@
 	function printNavbar(){
 		global $logged;
 		
+		$user = "Area Riservata";
 		$log = "Login";
-		if($logged == 1)
+		if($logged == 1){
 			$log = "Logout";
+			$user = $_SESSION['user'];
+		}
 		
 		echo "<!--- header --->
 			<nav class='navbar navbar-default'>
@@ -31,7 +34,7 @@
 						</li>
 						
 						<li><a href='report'>Report</a></li>
-						<li><a href='#'>Admin</a></li>
+						<li><a href='private'>" . $user . "</a></li>
 						<li><a href='login'>" . $log . "</a></li>
 					</ul>
 				</div>
