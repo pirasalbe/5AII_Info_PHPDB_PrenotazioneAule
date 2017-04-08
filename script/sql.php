@@ -79,6 +79,33 @@
 		return $result;
 	}
 	
+	//user list
+	function users(){
+		$sql = "SELECT username 
+			FROM utenti
+			where username<>?";
+		
+		$conn = init();
+		
+		$result = null;
+		
+		if ($stmt = $conn->prepare($sql)) {
+
+			/* bind parameters for markers */
+			$stmt->bind_param("s", $_SESSION['user']);
+
+			/* execute query */
+			$stmt->execute();
+
+			/* instead of bind_result: */
+			$result = $stmt->get_result();
+		}
+		
+		close($conn);
+		
+		return $result;
+	}
+	
 	//close sql 
 	function close($conn){
 		$conn->close();

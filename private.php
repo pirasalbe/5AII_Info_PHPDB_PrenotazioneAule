@@ -57,8 +57,8 @@
 		<!--- footer --->
 			<div class="row">
 				<div class="col-sm-2">
-					<form action="">
-						<input type="submit" class="btn btn-default" value="Richiedi Informazioni">
+					<form action="messages">
+						<input type="submit" class="btn btn-default" value="Manda un messaggio">
 					</form>
 				</div>
 			</div>			
