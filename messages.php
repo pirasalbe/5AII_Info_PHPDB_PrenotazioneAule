@@ -88,10 +88,11 @@
 							if(isset($result) && $result != null) {
 								while ($row = $result->fetch_assoc()) {
 									echo "<tr>
-										<td>" . $row["timestamp"] . "</td>
-										<td>" . $row['primo'] . "</td>
-										<td>" . $row["secondo"] . "</td>
-										<td>" . $row["messaggio"] . "</td>
+											<td>" . $row["timestamp"] . "</td>
+											<td>" . $row['primo'] . "</td>
+											<td>" . $row["secondo"] . "</td>
+											<td>" . $row["messaggio"] . "</td>
+											<td><a href='script/deleteMessage?id=" . $row["id"] . "'>Elimina</a></td>
 										</tr>";
 								}
 							}

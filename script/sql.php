@@ -185,6 +185,27 @@
 		close($conn);
 	}
 	
+	//delete message
+	function deleteMessage($id){
+		$sql = "delete from messages 
+				where id=?";
+		
+		$conn = init();
+		
+		$result = null;
+		
+		if ($stmt = $conn->prepare($sql)) {
+
+			/* bind parameters for markers */
+			$stmt->bind_param("s", $id);
+
+			/* execute query */
+			$stmt->execute();
+		}
+		
+		close($conn);
+	}
+	
 	//delete booking
 	function deleteBooking($user, $aula){
 		$sql = "delete from prenotazioni 
