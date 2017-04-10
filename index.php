@@ -102,23 +102,7 @@
 				</table>
 			</div>
 			
-		</div>	
-		
-		<!--- Legenda --->
-		<div class="container">
-		
-			<div class="row">
-				<div class="col-sm-2 alert-success">
-					Interno
-				</div>
-				<div class="col-sm-1">
-				
-				</div>
-				<div class="col-sm-2 alert-info">
-					Esterno
-				</div>
-			</div>		
-			</div>							
+		</div>							
 		</div>	
 	</body>
 </html>
