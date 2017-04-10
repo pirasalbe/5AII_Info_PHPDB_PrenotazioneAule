@@ -111,7 +111,7 @@
 	
 	//user list
 	function users(){
-		$sql = "SELECT username 
+		$sql = "SELECT * 
 			FROM utenti
 			where username<>?";
 		
@@ -136,7 +136,7 @@
 		return $result;
 	}
 	
-	//user list
+	//messages list
 	function messages(){
 		$sql = "SELECT * 
 			FROM messages
@@ -185,6 +185,27 @@
 		close($conn);
 	}
 	
+	//add user
+	function addUser($user, $pass, $name, $admin){
+		$sql = "insert into utenti 
+				values(?,?,?,?)";
+		
+		$conn = init();
+		
+		$result = null;
+		
+		if ($stmt = $conn->prepare($sql)) {
+
+			/* bind parameters for markers */
+			$stmt->bind_param("ssss", $user, $pass, $admin, $name);
+
+			/* execute query */
+			$stmt->execute();
+		}
+		
+		close($conn);
+	}
+	
 	//delete message
 	function deleteMessage($id){
 		$sql = "delete from messages 
@@ -198,6 +219,27 @@
 
 			/* bind parameters for markers */
 			$stmt->bind_param("s", $id);
+
+			/* execute query */
+			$stmt->execute();
+		}
+		
+		close($conn);
+	}
+	
+	//delete user
+	function deleteUser($user){
+		$sql = "delete from utenti 
+				where username=?";
+		
+		$conn = init();
+		
+		$result = null;
+		
+		if ($stmt = $conn->prepare($sql)) {
+
+			/* bind parameters for markers */
+			$stmt->bind_param("s", $user);
 
 			/* execute query */
 			$stmt->execute();

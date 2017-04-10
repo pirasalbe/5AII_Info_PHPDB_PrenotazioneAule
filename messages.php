@@ -52,7 +52,7 @@
 						<label for="messaggio">Messaggio: </label>
 					</div>
 					<div class="col-sm-8">
-						<input name="messaggio" class="form-control">
+						<input name="messaggio" class="form-control"  maxlength="100">
 					</div>
 				</div>				
 

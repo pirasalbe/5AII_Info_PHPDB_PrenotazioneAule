@@ -12,7 +12,7 @@
 
 	<body>	
 		<!--- header --->
-		<?php printNavbar(); ?>
+		<?php printNavbar(false); ?>
 	
 		<br>
 		

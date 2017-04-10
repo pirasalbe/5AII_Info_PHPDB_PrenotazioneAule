@@ -5,8 +5,13 @@
 	if(isset($_SESSION['user']))
 		$logged='1';
 	
-	function printNavbar(){
+	function printNavbar($admin){
 		global $logged;
+		
+		if($admin)
+			$admin = "../";
+		else 
+			$admin = "";
 		
 		$user = "Area Riservata";
 		$log = "Login";
@@ -19,23 +24,23 @@
 			<nav class='navbar navbar-default'>
 				<div class='container-fluid'>
 					<div class='navbar-header'>
-						<a class='navbar-brand' href='index.php'>Sistema Prenotazione Aule</a>
+						<a class='navbar-brand' href='" . $admin . "index.php'>Sistema Prenotazione Aule</a>
 					</div>
 					<ul class='nav navbar-nav'>
-						<li><a href='#'><input type='date' name='data'> Vai a</a></li>
+						<li><a href='" . $admin . "#'><input type='date' name='data'> Vai a</a></li>
 						
 						<li class='dropdown'>
 							<a class='dropdown-toggle' data-toggle='dropdown' href='#'>Visualizzazione<span class='caret'></span></a>
 							<ul class='dropdown-menu'>
-								<li><a href='#'>Giorni</a></li>
-								<li><a href='#'>Settimane</a></li>
-								<li><a href='#'>Mesi</a></li>
+								<li><a href='" . $admin . "#'>Giorni</a></li>
+								<li><a href='" . $admin . "#'>Settimane</a></li>
+								<li><a href='" . $admin . "#'>Mesi</a></li>
 							</ul>
 						</li>
 						
-						<li><a href='report'>Report</a></li>
-						<li><a href='private'>" . $user . "</a></li>
-						<li><a href='login'>" . $log . "</a></li>
+						<li><a href='" . $admin . "report'>Report</a></li>
+						<li><a href='" . $admin . "private'>" . $user . "</a></li>
+						<li><a href='" . $admin . "login'>" . $log . "</a></li>
 					</ul>
 				</div>
 			</nav>";
