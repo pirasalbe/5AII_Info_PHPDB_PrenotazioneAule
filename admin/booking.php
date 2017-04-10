@@ -1,32 +1,22 @@
 <?php
-	include("script/sql.php");
+	include("../script/sql.php");
 	
 	if($logged == 0){
-		header("location: login");
+		header("location: ../login");
 	}
 ?>
 
 <html>
 	<head>
 		<title>
-			Area Riservata
+			Utenti
 		</title>
 		<?php printHeader(); ?>
 	</head>
 
 	<body>	
 		<!--- header --->
-		<?php printNavbar(false); 
-		if(admin())
-			echo "<div class='container navbar '>
-			<ul class='nav navbar-nav list-group-item-info'>
-				<li><a href='#'>Tool amministratore: </a></li>
-				<li><a href='admin/booking'>Prenotazioni</a></li>
-				<li><a href='admin/users'>Utenti</a></li>
-			</ul>
-		</div>";
-			
-		?>
+		<?php printNavbar(true); ?>
 		
 		<br>
 		
@@ -38,6 +28,7 @@
 			<table class="table">
 				<thead>
 					<tr>
+						<th>Utente</th>
 						<th>Nr</th>
 						<th>Aula</th>
 						<th>Tipo</th>
@@ -47,12 +38,13 @@
 				
 				<tbody>
 					<?php
-						$result = booking(false);
+						$result = booking(true);
 						
 						if(isset($result) && $result != null) {
 							while ($row = $result->fetch_assoc()) {
 								echo "<tr>
-									<form action='script/deleteBooking'>
+									<form action='../script/deleteBooking'>
+										<td name='user'>" . $row["utente"] . "</td>
 										<td name='aula'>" . $row["numero"] . "</td>
 										<td>" . $row["nome"] . "</td>
 										<td>" . $row["type"] . "</td>
@@ -65,12 +57,12 @@
 					?>
 				</tbody>
 			</table>
-		</div>
+		</div>	
 		
 		<br>
 		
-		<!--- footer --->
-			<form action="messages">
+		<!--- Messages --->
+			<form action="../messages">
 				<div class="row">
 					<div class="col-sm-4">
 						<input type="submit" class="btn btn-default" value="Manda un messaggio">
@@ -92,8 +84,9 @@
 						</span>
 					</div>
 				</div>	
-			</form>		
-		</div>	
+			</form>
+			
+		</div>
 		
 	</body>
 </html>
