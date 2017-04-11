@@ -1,9 +1,23 @@
 <?php
 	include("script/sql.php");
 	
+	$hours = array("07:45", "08:40", "09:35", "10:30",
+					"11:40", "12:35", "13:30", "14:00",
+					"15:00", "16:00", "17:00", "18:00",
+					"18:30", "19:20", "20:10", "21:10",
+					"22:00", "22:50", "23:40");
+	
 	$tipo = "Attrezzatura Informatica";
 	if(isset($_REQUEST['tipo']))
 		$tipo = $_REQUEST['tipo'];
+	
+	$inizio = date("Y-m-d") . " 00:00:01";
+	$fine = date("Y-m-d") . " 23:23:59";
+	if(isset($_REQUEST['date']))
+	{
+		$inizio = $_REQUEST['date'] . " 00:00:01";
+		$fine = $_REQUEST['date'] . " 23:23:59";
+	}
 ?>
 
 <html>
@@ -40,7 +54,7 @@
 				<div class="col-sm-4">
 				</div>
 				<div class="col-sm-4">
-					<a href="#"><h3>Martedi 4 Aprile 2017</h3></a>
+					<a href="#"><h3><?php echo date("D d M Y") ?></h3></a>
 				</div>
 				<div class="col-sm-4">
 				</div>
@@ -75,23 +89,62 @@
 					<thead>
 						<tr>
 							<th>Ora</th>
-							<th>Aula 1</th>
-							<th>Aula 2</th>
-							<th>Aula 3</th>
-							<th>Aula 4</th>
-							<th>Aula 5</th>
+							<?php
+							
+								$rooms = array();
+							
+								//save rooms
+								$result = rooms();
+								
+								if(isset($result) && $result != null) {
+									while ($row = $result->fetch_assoc()) {
+										if($row["type"] == $tipo){
+											echo "<th>" . $row["nome"] . "</th>";
+											array_push($rooms, $row["numero"]);
+										}
+									}
+								}
+								
+							?>
 						</tr>
 					</thead>
 					
 					<tbody>
-						<tr>
-							<td>07:45 - 08:40</td>
-							<td><a href="#"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></td>
-							<td><a href="#"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></td>
-							<td><a href="#"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></td>
-							<td><a href="#"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></td>
-							<td><a href="#"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></td>
-						</tr>
+						<?php
+						
+							$bookings = array();
+						
+							//save bookings
+							$result = bookings($inizio, $fine, $tipo);
+							
+							if(isset($result) && $result != null) {
+								while ($row = $result->fetch_assoc()) {
+									array_push($bookings, $row);
+								}
+							}
+							
+							foreach ($hours as $key => $hour){
+								echo "<tr>";
+								
+								echo "<td>" . $hour . "</td>";
+								
+								foreach ($rooms as $room){
+									$null = true;
+									foreach($bookings as $book) {
+										if($room == $row['aula'])
+											if($row['inizio'] >= $hour && $row['fine'] <= $hours[$key - 1]){}
+												echo "<td>" . $row['descrizioni'] . " " . $row['utenti.nome'] . "<td>";
+												$null=false;
+											}
+									
+									if($null)
+										echo "<td><a href='#'><i class='fa fa-plus-circle' aria-hidden='true'></i></a></td>";
+								}
+								
+								echo "</tr>";
+							}
+							
+						?>		
 					</tbody>
 				</table>
 			</div>

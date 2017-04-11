@@ -85,7 +85,7 @@
 	//look for my prenotazioni
 	function booking($all){
 		$sql = "SELECT numero, nome, type, data 
-			FROM prenotazioni p inner join aula a on a.aula=p.numero ";
+			FROM prenotazioni p inner join aula a on p.aula=a.numero ";
 			
 		if(!$all)
 			$sql = $sql . "where utente=?";
@@ -99,6 +99,34 @@
 			/* bind parameters for markers */
 			if(!$all)
 				$stmt->bind_param("s", $_SESSION['user']);
+
+			/* execute query */
+			$stmt->execute();
+
+			/* instead of bind_result: */
+			$result = $stmt->get_result();
+		}
+		
+		close($conn);
+		
+		return $result;
+	}
+	
+	//look for booking
+	function bookings($inizio, $fine, $type){
+		$sql = "SELECT * 
+			FROM prenotazioni p inner join aula a on p.aula=a.numero 
+			inner join utenti u on p.utente=u.username 
+			where a.type=? and p.inizio>=? and p.fine<=?";
+		
+		$conn = init();
+		
+		$result = null;
+		
+		if ($stmt = $conn->prepare($sql)) {
+
+			/* bind parameters for markers */
+			$stmt->bind_param("sss", $type, $inizio, $fine);
 
 			/* execute query */
 			$stmt->execute();
