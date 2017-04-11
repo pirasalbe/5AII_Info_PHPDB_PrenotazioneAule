@@ -139,6 +139,29 @@
 		return $result;
 	}
 	
+	//room list
+	function rooms(){
+		$sql = "SELECT * 
+			FROM aula";
+		
+		$conn = init();
+		
+		$result = null;
+		
+		if ($stmt = $conn->prepare($sql)) {
+
+			/* execute query */
+			$stmt->execute();
+
+			/* instead of bind_result: */
+			$result = $stmt->get_result();
+		}
+		
+		close($conn);
+		
+		return $result;
+	}
+	
 	//messages list
 	function messages(){
 		$sql = "SELECT * 
@@ -209,6 +232,27 @@
 		close($conn);
 	}
 	
+	//add room
+	function addRoom($nr, $name, $descrizione, $type){
+		$sql = "insert into aula 
+				values(?,?,?,?)";
+		
+		$conn = init();
+		
+		$result = null;
+		
+		if ($stmt = $conn->prepare($sql)) {
+
+			/* bind parameters for markers */
+			$stmt->bind_param("ssss", $nr, $name, $descrizione, $type);
+
+			/* execute query */
+			$stmt->execute();
+		}
+		
+		close($conn);
+	}
+	
 	//delete message
 	function deleteMessage($id){
 		$sql = "delete from messages 
@@ -222,6 +266,27 @@
 
 			/* bind parameters for markers */
 			$stmt->bind_param("s", $id);
+
+			/* execute query */
+			$stmt->execute();
+		}
+		
+		close($conn);
+	}
+	
+	//delete room
+	function deleteRoom($nr){
+		$sql = "delete from aula 
+				where numero=?";
+		
+		$conn = init();
+		
+		$result = null;
+		
+		if ($stmt = $conn->prepare($sql)) {
+
+			/* bind parameters for markers */
+			$stmt->bind_param("s", $nr);
 
 			/* execute query */
 			$stmt->execute();

@@ -9,7 +9,7 @@
 <html>
 	<head>
 		<title>
-			Utenti
+			Aule
 		</title>
 		<?php printHeader(); ?>
 	</head>
@@ -22,37 +22,43 @@
 		
 		<!--- body --->
 		
-		<!--- create user --->
+		<!--- Create room --->
 		<div class="container">
-			<form action="../script/addUser">
+			<form action="../script/addRoom">
 		
 				<div class="row form-group">
 					<div class="col-sm-2">
-						<label for="username">Username: </label>
+						<label for="numero">Numero: </label>
 					</div>
 					<div class="col-sm-4">
-						<input name="username" class="form-control" maxlength="20">
+						<input name="numero" type="number" value="1" class="form-control" min="1">
 					</div>
-					<div class="col-sm-2">
-						<label for="password">Password: </label>
-					</div>
-					<div class="col-sm-4">
-						<input name="password" class="form-control" maxlength="20">
-					</div>
-				</div>					
-
-				<div class="row form-group">
 					<div class="col-sm-2">
 						<label for="name">Nome: </label>
 					</div>
 					<div class="col-sm-4">
 						<input name="name" class="form-control" maxlength="20">
 					</div>
+				</div>					
+
+				<div class="row form-group">
 					<div class="col-sm-2">
-						<label for="admin">Admin: </label>
+						<label for="descrizione">Descrizione: </label>
 					</div>
-					<div class="col-sm-4 checkbox">
-						<input name="admin" value="si" type="checkbox" maxlength="20">
+					<div class="col-sm-4">
+						<input name="descrizione" class="form-control" maxlength="20">
+					</div>
+					<div class="col-sm-2">
+						<label for="type">Tipo: </label>
+					</div>
+					<div class="col-sm-4">
+						<select name="type" class="form-control">
+							<option value="Attrezzatura Informatica">Attrezzatura Informatica</option>
+							<option value="Aule speciali">Aule speciali</option>
+							<option value="Piano Rialzato">Piano Rialzato</option>
+							<option value="Primo Piano">Primo Piano</option>
+							<option value="Secondo Piano">Secondo Piano</option>
+						</select>
 					</div>
 				</div>				
 
@@ -74,25 +80,25 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th>Username</th>
-							<th>Password</th>
-							<th>Admin</th>
+							<th>Numero</th>
 							<th>Nome</th>
+							<th>Descrizione</th>
+							<th>Tipo</th>
 						</tr>
 					</thead>
 					
 					<tbody>
 						<?php
-							$result = users();
+							$result = rooms();
 							
 							if(isset($result) && $result != null) {
 								while ($row = $result->fetch_assoc()) {
 									echo "<tr>
-											<td>" . $row["username"] . "</td>
-											<td>" . $row['password'] . "</td>
-											<td>" . $row["admin"] . "</td>
-											<td>" . $row["nome"] . "</td>
-											<td><a href='../script/deleteUser?username=" . $row["username"] . "'>Elimina</a></td>
+											<td>" . $row["numero"] . "</td>
+											<td>" . $row['nome'] . "</td>
+											<td>" . $row["descrizione"] . "</td>
+											<td>" . $row["type"] . "</td>
+											<td><a href='../script/deleteRoom?numero=" . $row["numero"] . "'>Elimina</a></td>
 										</tr>";
 								}
 							}

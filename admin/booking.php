@@ -4,6 +4,11 @@
 	if($logged == 0){
 		header("location: ../login");
 	}
+	
+	//user
+	$user = "all";
+	if(isset($_REQUEST['username']))
+		$user = $_REQUEST['username'];
 ?>
 
 <html>
@@ -22,6 +27,37 @@
 		
 		<!--- body --->
 		<div class="container">
+		
+		<!--- Users --->
+		<div class="row form-group">
+			<form action="booking.php" method="post">
+				<div class="col-sm-2">
+					<label for="username">Utente: </label>
+				</div>
+				<div class="col-sm-4">
+					<select name="username" class="form-control">
+						<option value="all">Tutti</option>
+						<?php 
+						
+							$result = users();
+							
+							if(isset($result) && $result != null) {
+								while ($row = $result->fetch_assoc()) {
+									if($user == "all" || $user == $row["username"])
+										echo "<option value='" . $row["username"] . "'>" . $row["username"] . "</option>";
+								}
+							}
+						
+						?>
+					</select>
+				</div>
+				<div class="col-sm-2">
+					<button type="submit" class="form-control">Seleziona</button>	
+				</div>
+			</form>
+		</div>
+		
+		<br>
 		
 		<!--- prenotazioni --->
 		<div class="table-responsive">          

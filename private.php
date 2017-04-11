@@ -23,6 +23,7 @@
 				<li><a href='#'>Tool amministratore: </a></li>
 				<li><a href='admin/booking'>Prenotazioni</a></li>
 				<li><a href='admin/users'>Utenti</a></li>
+				<li><a href='admin/rooms'>Aule</a></li>
 			</ul>
 		</div>";
 			
