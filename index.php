@@ -63,6 +63,23 @@
 			<br>
 		
 			<div class="row">
+				<div class="col-sm-3">
+				</div>
+				<form action="index">
+					<div class="col-sm-3">
+						<input type="date" name="date" class="form-control">
+					</div>
+					<div class="col-sm-3">
+						<input type="submit" class="btn btn-default" value="Vai a">
+					</div>
+				</form>
+				<div class="col-sm-3">
+				</div>
+			</div>		
+			
+			<br>
+		
+			<div class="row">
 				<div class="col-sm-4">
 					<a href="#">Vai al giorno prima</a>
 				</div>

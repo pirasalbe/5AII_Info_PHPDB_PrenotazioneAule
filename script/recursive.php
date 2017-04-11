@@ -27,8 +27,6 @@
 						<a class='navbar-brand' href='" . $admin . "index.php'>Sistema Prenotazione Aule</a>
 					</div>
 					<ul class='nav navbar-nav'>
-						<li><a href='" . $admin . "#'><input type='date' name='data'> Vai a</a></li>
-						
 						<li class='dropdown'>
 							<a class='dropdown-toggle' data-toggle='dropdown' href='#'>Visualizzazione<span class='caret'></span></a>
 							<ul class='dropdown-menu'>
