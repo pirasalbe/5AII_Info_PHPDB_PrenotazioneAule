@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Creato il: Apr 04, 2017 alle 08:42
--- Versione del server: 10.1.16-MariaDB
--- Versione PHP: 5.6.24
+-- Generation Time: Apr 11, 2017 at 08:14 AM
+-- Server version: 10.1.16-MariaDB
+-- PHP Version: 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `aula`
+-- Table structure for table `aula`
 --
 
 CREATE TABLE `aula` (
@@ -33,23 +33,40 @@ CREATE TABLE `aula` (
   `type` enum('Attrezzatura Informatica','Aule speciali','Piano Rialzato','Primo Piano','Secondo Piano') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `aula`
+--
+
+INSERT INTO `aula` (`numero`, `nome`, `descrizione`, `type`) VALUES
+(1, 'PC Port. 1 LENOVO 01', 'PC Port. 1 LENOVO 01', 'Attrezzatura Informatica'),
+(2, 'PC Port. 2 LENOVO 02', 'PC Port. 2 LENOVO 02', 'Attrezzatura Informatica'),
+(10, '10', '10', 'Secondo Piano'),
+(11, '11', '11', 'Secondo Piano'),
+(29, '29', '29', 'Primo Piano'),
+(30, '30', '30', 'Primo Piano'),
+(35, 'Aula 35 Lim', 'Aula 35 Lim', 'Aule speciali'),
+(38, 'Aula 38 Umanistico', 'Aula 38 Umanistico', 'Aule speciali'),
+(188, '188', '188', 'Piano Rialzato'),
+(190, '190', '190', 'Piano Rialzato');
+
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `messages`
+-- Table structure for table `messages`
 --
 
 CREATE TABLE `messages` (
+  `id` int(11) NOT NULL,
   `primo` varchar(20) NOT NULL,
   `secondo` varchar(20) NOT NULL,
   `messaggio` varchar(100) NOT NULL,
-  `timestamp` date NOT NULL
+  `timestamp` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `prenotazioni`
+-- Table structure for table `prenotazioni`
 --
 
 CREATE TABLE `prenotazioni` (
@@ -61,7 +78,7 @@ CREATE TABLE `prenotazioni` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `utenti`
+-- Table structure for table `utenti`
 --
 
 CREATE TABLE `utenti` (
@@ -72,33 +89,50 @@ CREATE TABLE `utenti` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Indici per le tabelle scaricate
+-- Dumping data for table `utenti`
+--
+
+INSERT INTO `utenti` (`username`, `password`, `admin`, `nome`) VALUES
+('giuliopertile', 'banane', 'no', 'Giulio Pertile'),
+('pirasalbe', 'chicco70', 'si', 'Alberto Piras');
+
+--
+-- Indexes for dumped tables
 --
 
 --
--- Indici per le tabelle `aula`
+-- Indexes for table `aula`
 --
 ALTER TABLE `aula`
   ADD PRIMARY KEY (`numero`);
 
 --
--- Indici per le tabelle `messages`
+-- Indexes for table `messages`
 --
 ALTER TABLE `messages`
-  ADD PRIMARY KEY (`primo`,`secondo`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `prenotazioni`
+-- Indexes for table `prenotazioni`
 --
 ALTER TABLE `prenotazioni`
   ADD PRIMARY KEY (`utente`,`aula`);
 
 --
--- Indici per le tabelle `utenti`
+-- Indexes for table `utenti`
 --
 ALTER TABLE `utenti`
   ADD PRIMARY KEY (`username`);
 
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `messages`
+--
+ALTER TABLE `messages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
