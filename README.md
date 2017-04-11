@@ -28,3 +28,10 @@ PHP: connessione al DB, Session/Cookie, interfaccia web. <br><br><br>
 ** https://photos.google.com/photo/AF1QipNYNGlyZD9ASlnogDs7kG3dwsExMbqZMAvI_mmQ?hl=it <br>
 ** https://www3.itisrossi.vi.it/web/index.php <br>
 ** HTTPS
+
+<br><br>
+Heroku: gigorawih@1rentcar.top <br>
+Password : no dog
+
+<br>
+<a href="https://prenotazioneaule.herokuapp.com/index.php"> Demo </a>
