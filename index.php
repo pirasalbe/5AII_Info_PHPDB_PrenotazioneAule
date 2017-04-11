@@ -1,15 +1,9 @@
 <?php
-	include("script/recursive.php");
-
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
-	$dbname = "aule";
+	include("script/sql.php");
 	
-	//Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname);
-	
-	$conn->close();
+	$tipo = "Attrezzatura Informatica";
+	if(isset($_REQUEST['tipo']))
+		$tipo = $_REQUEST['tipo'];
 ?>
 
 <html>
@@ -31,11 +25,11 @@
 		<!--- Class type --->
 		<div class="container navbar ">
 			<ul class="nav navbar-nav list-group-item-info">
-				<li><a href="#">Attrezzatura Informatica</a></li>
-				<li><a href="#">Aule-speciali</a></li>
-				<li><a href="#">Piano Rialzato - Aule</a></li>
-				<li><a href="#">Primo Piano - Aule</a></li>
-				<li><a href="#">Secondo Piano - Aule</a></li>
+				<li class="<?php if($tipo == "Attrezzatura Informatica") echo "alert-warning"; ?>"><a href="index?tipo=Attrezzatura%20Informatica">Attrezzatura Informatica</a></li>
+				<li class="<?php if($tipo == "Aule speciali") echo "alert-warning"; ?>"><a href="index?tipo=Aule%20speciali">Aule-speciali</a></li>
+				<li class="<?php if($tipo == "Piano Rialzato") echo "alert-warning"; ?>"><a href="index?tipo=Piano%20Rialzato">Piano Rialzato - Aule</a></li>
+				<li class="<?php if($tipo == "Primo Piano") echo "alert-warning"; ?>"><a href="index?tipo=Primo%20Piano">Primo Piano - Aule</a></li>
+				<li class="<?php if($tipo == "Secondo Piano") echo "alert-warning"; ?>"><a href="index?tipo=Secondo%20Piano">Secondo Piano - Aule</a></li>
 			</ul>
 		</div>
 		
