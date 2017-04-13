@@ -7,6 +7,6 @@ $ripeti = $_REQUEST['ripeti'];
 $name = $_REQUEST['name'];
 
 if ($pass == $ripeti)
-    signin($user, $pass, $name);
+    signup($user, $pass, $name);
 
 ?>

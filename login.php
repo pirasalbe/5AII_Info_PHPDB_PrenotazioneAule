@@ -110,7 +110,7 @@
 
                 <div class="row form-group">
                     <div class="col-sm-2">
-                        <button type="submit" class="btn btn-default">Sign In</button>
+                        <button type="submit" class="btn btn-default">Sign Up</button>
                     </div>
                 </div>
             </div>

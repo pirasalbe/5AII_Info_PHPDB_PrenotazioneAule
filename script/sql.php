@@ -55,7 +55,7 @@ function login($user, $pass)
 }
 
 //perform sign in
-function signin($user, $pass, $name)
+function signup($user, $pass, $name)
 {
     $sql = "insert into utenti(username, password, nome)
             VALUES (?,?,?)";
