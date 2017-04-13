@@ -141,6 +141,7 @@ if (isset($_REQUEST['date'])) {
                 }
             }
 
+
             foreach ($hours as $key => $hour) {
                 if ($key + 1 >= count($hours)) continue;
 
@@ -151,11 +152,11 @@ if (isset($_REQUEST['date'])) {
                 foreach ($rooms as $room) {
                     $null = true;
                     foreach ($bookings as $book) {
-                        if ($room == $row['aula'])
-                            if ($row['inizio'] >= $hour && $row['fine'] <= $hours[$key + 1]) {
+                        if ($room == $book['aula'])
+                            if (date("H:i", strtotime($book['inizio'])) >= $hour && date("H:i", strtotime($book['fine'])) <= $hours[$key + 1]) {
+                                echo "<td>" . $book['nome'] . ": " . $book['dettagli'] . "<td>";
+                                $null = false;
                             }
-                        echo "<td>" . $row['descrizioni'] . " " . $row['utenti.nome'] . "<td>";
-                        $null = false;
                     }
 
                     if ($null)

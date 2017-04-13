@@ -68,6 +68,7 @@ if (isset($_REQUEST['username']))
                 <th>Nr</th>
                 <th>Aula</th>
                 <th>Tipo</th>
+                <th>Dettagli</th>
                 <th>Inizio</th>
                 <th>Fine</th>
                 <th>Attiva</th>
@@ -85,6 +86,7 @@ if (isset($_REQUEST['username']))
                             <td>" . $row["numero"] . "</td>
                             <td>" . $row["nome"] . "</td>
                             <td>" . $row["type"] . "</td>
+                            <td>" . $row["dettagli"] . "</td>
                             <td>" . $row["inizio"] . "</td>
                             <td>" . $row["fine"] . "</td>
                             <td><a href='../script/changeBooking?user=" . $row["utente"] . "&aula=" . $row["numero"] . "&stato=" . $row["attiva"] . "'>" . $row["attiva"] . "</a></td>
