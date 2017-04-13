@@ -13,7 +13,9 @@ if (isset($_REQUEST['tipo']))
 
 $inizio = date("Y-m-d") . " 00:00:01";
 $fine = date("Y-m-d") . " 23:23:59";
+$date = date("D d M Y");
 if (isset($_REQUEST['date'])) {
+    $date = date("D d M Y", strtotime($_REQUEST['date']));
     $inizio = $_REQUEST['date'] . " 00:00:01";
     $fine = $_REQUEST['date'] . " 23:23:59";
 }
@@ -58,7 +60,7 @@ if (isset($_REQUEST['date'])) {
         <div class="col-sm-4">
         </div>
         <div class="col-sm-4">
-            <a href="#"><h3><?php echo date("D d M Y") ?></h3></a>
+            <a href="#"><h3><?php echo $date ?></h3></a>
         </div>
         <div class="col-sm-4">
         </div>
@@ -85,13 +87,13 @@ if (isset($_REQUEST['date'])) {
 
     <div class="row">
         <div class="col-sm-4">
-            <a href="#">Vai al giorno prima</a>
+            <a href="index?date=<?php echo date( 'Y-m-d', strtotime( $date . ' -1 day' ) ); ?>">Vai al giorno prima</a>
         </div>
         <div class="col-sm-4">
-            <a href="#">Vai a oggi</a>
+            <a href="index?date=<?php echo date("Y-m-d"); ?>">Vai a oggi</a>
         </div>
         <div class="col-sm-4">
-            <a href="#">Vai al giorno successivo</a>
+            <a href="index?date=<?php echo date( 'Y-m-d', strtotime( $date . ' +1 day' ) ); ?>">Vai al giorno successivo</a>
         </div>
     </div>
 </div>
