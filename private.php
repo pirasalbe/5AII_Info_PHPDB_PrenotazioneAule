@@ -43,6 +43,7 @@
 						<th>Aula</th>
 						<th>Tipo</th>
 						<th>Data</th>
+                        <th>Stato</th>
 					</tr>
 				</thead>
 				
@@ -58,6 +59,7 @@
 										<td>" . $row["nome"] . "</td>
 										<td>" . $row["type"] . "</td>
 										<td>" . $row["data"] . "</td>
+										<td>" . $row["attiva"] . "</td>
 										<td><input type='submit' value='Elimina'></td>
 									</form>
 									</tr>";
