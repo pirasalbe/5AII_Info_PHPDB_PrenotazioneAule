@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 11, 2017 at 08:14 AM
--- Server version: 10.1.16-MariaDB
--- PHP Version: 5.6.24
+-- Creato il: Apr 13, 2017 alle 13:35
+-- Versione del server: 10.1.21-MariaDB
+-- Versione PHP: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `aula`
+-- Struttura della tabella `aula`
 --
 
 CREATE TABLE `aula` (
@@ -34,7 +34,7 @@ CREATE TABLE `aula` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `aula`
+-- Dump dei dati per la tabella `aula`
 --
 
 INSERT INTO `aula` (`numero`, `nome`, `descrizione`, `type`) VALUES
@@ -52,7 +52,7 @@ INSERT INTO `aula` (`numero`, `nome`, `descrizione`, `type`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `messages`
+-- Struttura della tabella `messages`
 --
 
 CREATE TABLE `messages` (
@@ -66,70 +66,74 @@ CREATE TABLE `messages` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `prenotazioni`
+-- Struttura della tabella `prenotazioni`
 --
 
 CREATE TABLE `prenotazioni` (
   `utente` varchar(20) NOT NULL,
   `aula` int(11) NOT NULL,
-  `data` date NOT NULL
+  `inizio` date NOT NULL,
+  `fine` date NOT NULL,
+  `attiva` enum('si','no') NOT NULL DEFAULT 'no'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `utenti`
+-- Struttura della tabella `utenti`
 --
 
 CREATE TABLE `utenti` (
   `username` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL,
-  `admin` enum('si','no') NOT NULL,
-  `nome` varchar(20) NOT NULL
+  `admin` enum('si','no') NOT NULL DEFAULT 'no',
+  `nome` varchar(20) NOT NULL,
+  `attivo` enum('si','no') NOT NULL DEFAULT 'no'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `utenti`
+-- Dump dei dati per la tabella `utenti`
 --
 
-INSERT INTO `utenti` (`username`, `password`, `admin`, `nome`) VALUES
-('giuliopertile', 'banane', 'no', 'Giulio Pertile'),
-('pirasalbe', 'chicco70', 'si', 'Alberto Piras');
+INSERT INTO `utenti` (`username`, `password`, `admin`, `nome`, `attivo`) VALUES
+('esterno1', 'rossiesterno1', 'no', 'Esterno', 'si'),
+('giuliopertile', 'banane', 'no', 'Giulio Pertile', 'si'),
+('pirasalbe', 'chicco70', 'si', 'Alberto Piras', 'si');
 
 --
--- Indexes for dumped tables
+-- Indici per le tabelle scaricate
 --
 
 --
--- Indexes for table `aula`
+-- Indici per le tabelle `aula`
 --
 ALTER TABLE `aula`
   ADD PRIMARY KEY (`numero`);
 
 --
--- Indexes for table `messages`
+-- Indici per le tabelle `messages`
 --
 ALTER TABLE `messages`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `prenotazioni`
+-- Indici per le tabelle `prenotazioni`
 --
 ALTER TABLE `prenotazioni`
   ADD PRIMARY KEY (`utente`,`aula`);
 
 --
--- Indexes for table `utenti`
+-- Indici per le tabelle `utenti`
 --
 ALTER TABLE `utenti`
   ADD PRIMARY KEY (`username`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT per le tabelle scaricate
 --
 
 --
--- AUTO_INCREMENT for table `messages`
+-- AUTO_INCREMENT per la tabella `messages`
 --
 ALTER TABLE `messages`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;

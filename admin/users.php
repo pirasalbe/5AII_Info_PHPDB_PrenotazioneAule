@@ -95,13 +95,13 @@ if ($logged == 0 || !admin()) {
             if (isset($result) && $result != null) {
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>
-                                        <td>" . $row["username"] . "</td>
-                                        <td>**********</td>
-                                        <td>" . $row["admin"] . "</td>
-                                        <td>" . $row["nome"] . "</td>
-										<td><a href='../script/changeUser?user=" . $row["username"] . "&stato=" . $row["attivo"] . "'>" . $row["attivo"] . "</a></td>
-										<td><a href='../script/deleteUser?username=" . $row["username"] . "'>Elimina</a></td>
-										</tr>";
+                            <td>" . $row["username"] . "</td>
+                            <td>**********</td>
+                            <td><a href='../script/adminUser?user=" . $row["username"] . "&admin=" . $row["admin"] . "'>" . $row["admin"] . "</a></td>
+                            <td>" . $row["nome"] . "</td>
+                            <td><a href='../script/changeUser?user=" . $row["username"] . "&stato=" . $row["attivo"] . "'>" . $row["attivo"] . "</a></td>
+                            <td><a href='../script/deleteUser?username=" . $row["username"] . "'>Elimina</a></td>
+                        </tr>";
                 }
             }
             ?>

@@ -468,6 +468,29 @@ function changeUser($user, $stato)
     close($conn);
 }
 
+//admin user
+function adminUser($user, $admin)
+{
+    $sql = "update utenti 
+                set admin=?
+				where username=?";
+
+    $conn = init();
+
+    $result = null;
+
+    if ($stmt = $conn->prepare($sql)) {
+
+        /* bind parameters for markers */
+        $stmt->bind_param("ss", $admin, $user);
+
+        /* execute query */
+        $stmt->execute();
+    }
+
+    close($conn);
+}
+
 //close sql
 function close($conn)
 {
