@@ -8,7 +8,14 @@ $descrizione = $_REQUEST['descrizione'];
 $orai = date("H:i", strtotime($_REQUEST['orai']));
 $oraf = date("H:i", strtotime($_REQUEST['oraf']));
 
-if($orai>=$oraf) header("location: ../book?inizio=" . $orai . "&fine=" . $orai . "&data=" . $date . "&aula=" . $aula);
+$oi = false;
+$of = false;
+foreach ($hours as $hour) {
+    if ($hour == $orai) $oi = true;
+    if ($hour == $oraf) $of = true;
+}
+
+if ($orai >= $oraf || !$of || !$oi) header("location: ../book?inizio=" . $orai . "&fine=" . $orai . "&data=" . $date . "&aula=" . $aula);
 
 $inizio = date("Y-m-d H:i:s", strtotime($date . " " . $orai));
 $fine = date("Y-m-d H:i:s", strtotime($date . " " . $oraf));

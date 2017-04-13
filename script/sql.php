@@ -315,7 +315,7 @@ function addUser($user, $pass, $name, $admin, $attivo)
 //add booking
 function requestBooking($user, $aula, $descrizione, $inizio, $fine)
 {
-    $sql = "insert into prenotazioni(utente,aula,descrizione,inizio,fine)
+    $sql = "insert into prenotazioni(utente,aula,dettagli,inizio,fine)
 				values(?,?,?,?,?)";
 
     $conn = init();
