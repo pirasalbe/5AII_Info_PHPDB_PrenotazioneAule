@@ -22,7 +22,7 @@ function init()
 //perform login
 function login($user, $pass)
 {
-    $sql = "SELECT username, password FROM utenti where username=? and password=?";
+    $sql = "SELECT username, password FROM utenti where username=? and password=? and attivo='si'";
 
     $conn = init();
 
@@ -249,10 +249,10 @@ function sendMessage($user, $messaggio)
 }
 
 //add user
-function addUser($user, $pass, $name, $admin)
+function addUser($user, $pass, $name, $admin, $attivo)
 {
     $sql = "insert into utenti 
-				values(?,?,?,?)";
+				values(?,?,?,?,?)";
 
     $conn = init();
 
@@ -261,7 +261,7 @@ function addUser($user, $pass, $name, $admin)
     if ($stmt = $conn->prepare($sql)) {
 
         /* bind parameters for markers */
-        $stmt->bind_param("ssss", $user, $pass, $admin, $name);
+        $stmt->bind_param("sssss", $user, $pass, $admin, $name, $attivo);
 
         /* execute query */
         $stmt->execute();
@@ -380,7 +380,7 @@ function deleteBooking($user, $aula)
     close($conn);
 }
 
-//delete booking
+//change booking
 function changeBooking($user, $aula, $stato)
 {
     $sql = "update prenotazioni 
@@ -395,6 +395,29 @@ function changeBooking($user, $aula, $stato)
 
         /* bind parameters for markers */
         $stmt->bind_param("sss", $stato, $user, $aula);
+
+        /* execute query */
+        $stmt->execute();
+    }
+
+    close($conn);
+}
+
+//change user
+function changeUser($user, $stato)
+{
+    $sql = "update utenti 
+                set attivo=?
+				where username=?";
+
+    $conn = init();
+
+    $result = null;
+
+    if ($stmt = $conn->prepare($sql)) {
+
+        /* bind parameters for markers */
+        $stmt->bind_param("ss", $stato, $user);
 
         /* execute query */
         $stmt->execute();

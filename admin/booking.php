@@ -69,7 +69,7 @@ if (isset($_REQUEST['username']))
                 <th>Aula</th>
                 <th>Tipo</th>
                 <th>Data</th>
-                <th>Stato</th>
+                <th>Attiva</th>
             </tr>
             </thead>
 

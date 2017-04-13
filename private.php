@@ -29,12 +29,23 @@ if (admin()) {
         }
     }
 
+    $result = users();
+    $count = 0;
+
+    if (isset($result) && $result != null) {
+        while ($row = $result->fetch_assoc()) {
+            if ($row["attivo"] == "no")
+                $count++;
+        }
+    }
+
     echo "<div class='container navbar '>
 			<ul class='nav navbar-nav list-group-item-info'>
 				<li><a href='#'>Tool amministratore: </a></li>
 				<li><a href='admin/booking'>Prenotazioni 
 				    <span class='badge'>" . $cont .  "</span></a></li>
-				<li><a href='admin/users'>Utenti</a></li>
+				<li><a href='admin/users'>Utenti 
+				    <span class='badge'>" . $count .  "</span></a></li></a></li>
 				<li><a href='admin/rooms'>Aule</a></li>
 			</ul>
 		</div>";
@@ -56,7 +67,7 @@ if (admin()) {
                 <th>Aula</th>
                 <th>Tipo</th>
                 <th>Data</th>
-                <th>Stato</th>
+                <th>Attiva</th>
             </tr>
             </thead>
 
