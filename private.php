@@ -79,16 +79,14 @@ if (admin()) {
             if (isset($result) && $result != null) {
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>
-									<form action='script/deleteBooking?aula=" . $row["numero"] . "&link=private'>
-										<td" . $row["numero"] . "</td>
-										<td>" . $row["nome"] . "</td>
-										<td>" . $row["type"] . "</td>
-										<td>" . $row["inizio"] . "</td>
-										<td>" . $row["fine"] . "</td>
-										<td>" . $row["attiva"] . "</td>
-										<td><input type='submit' value='Elimina'></td>
-									</form>
-									</tr>";
+                            <td>" . $row["numero"] . "</td>
+                            <td>" . $row["nome"] . "</td>
+                            <td>" . $row["type"] . "</td>
+                            <td>" . $row["inizio"] . "</td>
+                            <td>" . $row["fine"] . "</td>
+                            <td>" . $row["attiva"] . "</td>
+                            <td><a href='script/deleteBooking?aula=" . $row["numero"] . "&link=private' class=\"btn btn-default\">Elimina</a></td>
+                        </tr>";
                 }
             }
             ?>

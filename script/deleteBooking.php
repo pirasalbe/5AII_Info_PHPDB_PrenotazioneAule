@@ -1,8 +1,7 @@
 <?php
 include("recursive.php");
 
-if (isset($_REQUEST['link']))
-    $link = $_REQUEST['link'];
+$link = $_REQUEST['link'];
 
 if (isset($_REQUEST['user']))
     $user = $_REQUEST['user'];

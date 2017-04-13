@@ -81,17 +81,15 @@ if (isset($_REQUEST['username']))
             if (isset($result) && $result != null) {
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>
-									<form action='../script/deleteBooking?user=" . $row["utente"] . "&aula=" . $row["numero"] . "&stato=" . $row["attiva"] . "&link=admin'>
-										<td>" . $row["utente"] . "</td>
-										<td>" . $row["numero"] . "</td>
-										<td>" . $row["nome"] . "</td>
-										<td>" . $row["type"] . "</td>
-										<td>" . $row["inizio"] . "</td>
-										<td>" . $row["fine"] . "</td>
-										<td><a href='../script/changeBooking?user=" . $row["utente"] . "&aula=" . $row["numero"] . "&stato=" . $row["attiva"] . "'>" . $row["attiva"] . "</a></td>
-										<td><input type='submit' value='Elimina'></td>
-									</form>
-									</tr>";
+                            <td>" . $row["utente"] . "</td>
+                            <td>" . $row["numero"] . "</td>
+                            <td>" . $row["nome"] . "</td>
+                            <td>" . $row["type"] . "</td>
+                            <td>" . $row["inizio"] . "</td>
+                            <td>" . $row["fine"] . "</td>
+                            <td><a href='../script/changeBooking?user=" . $row["utente"] . "&aula=" . $row["numero"] . "&stato=" . $row["attiva"] . "'>" . $row["attiva"] . "</a></td>
+                            <td><a href='../script/deleteBooking?aula=" . $row["numero"] . "&link=admin' class=\"btn btn-default\">Elimina</a></td>
+                        </tr>";
                 }
             }
             ?>

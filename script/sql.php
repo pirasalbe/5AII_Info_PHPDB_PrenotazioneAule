@@ -130,7 +130,7 @@ function admin()
 //look for my prenotazioni
 function booking($all)
 {
-    $sql = "SELECT numero, nome, type, data 
+    $sql = "SELECT *
 			FROM prenotazioni p inner join aula a on p.aula=a.numero ";
 
     if (!$all)
@@ -312,6 +312,28 @@ function addUser($user, $pass, $name, $admin, $attivo)
     close($conn);
 }
 
+//add booking
+function requestBooking($user, $aula, $descrizione, $inizio, $fine)
+{
+    $sql = "insert into prenotazioni(utente,aula,descrizione,inizio,fine)
+				values(?,?,?,?,?)";
+
+    $conn = init();
+
+    $result = null;
+
+    if ($stmt = $conn->prepare($sql)) {
+
+        /* bind parameters for markers */
+        $stmt->bind_param("sssss", $user, $aula, $descrizione, $inizio, $fine);
+
+        /* execute query */
+        $stmt->execute();
+    }
+
+    close($conn);
+}
+
 //add room
 function addRoom($nr, $name, $descrizione, $type)
 {
@@ -413,7 +435,7 @@ function deleteBooking($user, $aula)
     if ($stmt = $conn->prepare($sql)) {
 
         /* bind parameters for markers */
-        $stmt->bind_param("ss", $user, $aula);
+        $stmt->bind_param("ss", $aula, $user);
 
         /* execute query */
         $stmt->execute();
@@ -436,7 +458,7 @@ function changeBooking($user, $aula, $stato)
     if ($stmt = $conn->prepare($sql)) {
 
         /* bind parameters for markers */
-        $stmt->bind_param("sss", $stato, $user, $aula);
+        $stmt->bind_param("sss", $stato, $aula, $user);
 
         /* execute query */
         $stmt->execute();
