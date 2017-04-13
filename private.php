@@ -66,7 +66,8 @@ if (admin()) {
                 <th>Nr</th>
                 <th>Aula</th>
                 <th>Tipo</th>
-                <th>Data</th>
+                <th>Inizio</th>
+                <th>Fine</th>
                 <th>Attiva</th>
             </tr>
             </thead>
@@ -82,7 +83,8 @@ if (admin()) {
 										<td" . $row["numero"] . "</td>
 										<td>" . $row["nome"] . "</td>
 										<td>" . $row["type"] . "</td>
-										<td>" . $row["data"] . "</td>
+										<td>" . $row["inizio"] . "</td>
+										<td>" . $row["fine"] . "</td>
 										<td>" . $row["attiva"] . "</td>
 										<td><input type='submit' value='Elimina'></td>
 									</form>
