@@ -94,12 +94,12 @@ if ($logged == 0 || !admin()) {
             if (isset($result) && $result != null) {
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>
-											<td>" . $row["numero"] . "</td>
-											<td>" . $row['nome'] . "</td>
-											<td>" . $row["descrizione"] . "</td>
-											<td>" . $row["type"] . "</td>
-											<td><a href='../script/deleteRoom?numero=" . $row["numero"] . "'>Elimina</a></td>
-										</tr>";
+                            <td>" . $row["numero"] . "</td>
+                            <td>" . $row['nome'] . "</td>
+                            <td>" . $row["descrizione"] . "</td>
+                            <td>" . $row["type"] . "</td>
+                            <td><a href='../script/deleteRoom?numero=" . $row["numero"] . "'>Elimina</a></td>
+                        </tr>";
                 }
             }
             ?>
