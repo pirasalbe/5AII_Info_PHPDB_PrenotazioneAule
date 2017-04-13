@@ -52,7 +52,7 @@ if ($logged == 0) {
                 <label for="date">Data: </label>
             </div>
             <div class="col-sm-4">
-                <input type="date" value="<?php echo $_REQUEST['data']; ?>" name="date" class="form-control">
+                <input type="date" value="<?php echo date("Y-m-d", strtotime($_REQUEST['data'])); ?>" name="date" class="form-control">
             </div>
         </div>
 

@@ -1,10 +1,10 @@
 <?php
-	include("sql.php");
-	
-	$id = $_REQUEST['id'];
+include("recursive.php");
 
-	deleteMessage($id);
-	
-	header("location: ../messages");
-	
+$id = $_REQUEST['id'];
+
+deleteMessage($id);
+
+header("location: ../messages");
+
 ?>
