@@ -68,7 +68,8 @@
 						<th>Nr</th>
 						<th>Aula</th>
 						<th>Tipo</th>
-						<th>Data</th>
+                        <th>Data</th>
+                        <th>Stato</th>
 					</tr>
 				</thead>
 				
@@ -79,12 +80,13 @@
 						if(isset($result) && $result != null) {
 							while ($row = $result->fetch_assoc()) {
 								echo "<tr>
-									<form action='../script/deleteBooking'>
-										<td name='user'>" . $row["utente"] . "</td>
-										<td name='aula'>" . $row["numero"] . "</td>
+									<form action='../script/deleteBooking?user=" . $row["utente"] . "&aula=" . $row["numero"] . "&stato=" . $row["attiva"] . "&link=admin'>
+										<td>" . $row["utente"] . "</td>
+										<td>" . $row["numero"] . "</td>
 										<td>" . $row["nome"] . "</td>
 										<td>" . $row["type"] . "</td>
 										<td>" . $row["data"] . "</td>
+										<td><a href='../script/changeBooking?user=" . $row["utente"] . "&aula=" . $row["numero"] . "&stato=" . $row["attiva"] . "'>" . $row["attiva"] . "</a></td>
 										<td><input type='submit' value='Elimina'></td>
 									</form>
 									</tr>";

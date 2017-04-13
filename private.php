@@ -53,8 +53,8 @@
 						if(isset($result) && $result != null) {
 							while ($row = $result->fetch_assoc()) {
 								echo "<tr>
-									<form action='script/deleteBooking'>
-										<td name='aula'>" . $row["numero"] . "</td>
+									<form action='script/deleteBooking?aula=" . $row["numero"] . "&link=private'>
+										<td" . $row["numero"] . "</td>
 										<td>" . $row["nome"] . "</td>
 										<td>" . $row["type"] . "</td>
 										<td>" . $row["data"] . "</td>
