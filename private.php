@@ -1,5 +1,5 @@
 <?php
-include("script/sql.php");
+include("script/recursive.php");
 
 if ($logged == 0) {
     header("location: login");
@@ -43,9 +43,9 @@ if (admin()) {
 			<ul class='nav navbar-nav list-group-item-info'>
 				<li><a href='#'>Tool amministratore: </a></li>
 				<li><a href='admin/booking'>Prenotazioni 
-				    <span class='badge'>" . $cont .  "</span></a></li>
+				    <span class='badge'>" . $cont . "</span></a></li>
 				<li><a href='admin/users'>Utenti 
-				    <span class='badge'>" . $count .  "</span></a></li></a></li>
+				    <span class='badge'>" . $count . "</span></a></li></a></li>
 				<li><a href='admin/rooms'>Aule</a></li>
 			</ul>
 		</div>";

@@ -1,5 +1,5 @@
 <?php
-include("../script/sql.php");
+include("../script/recursive.php");
 
 if ($logged == 0 || !admin()) {
     header("location: ../index");

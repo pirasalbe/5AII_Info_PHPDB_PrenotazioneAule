@@ -1,5 +1,5 @@
 <?php
-include("script/sql.php");
+include("script/recursive.php");
 
 $tipo = "Attrezzatura Informatica";
 if (isset($_REQUEST['tipo']))
@@ -159,7 +159,7 @@ if (isset($_REQUEST['date'])) {
                     }
 
                     if ($null)
-                        echo "<td><a href='book?inizio=" . $hour . "&fine=" . $hours[$key + 1] . "&aula=" . $room . "'><i class='fa fa-plus-circle' aria-hidden='true'></i></a></td>";
+                        echo "<td><a href='book?inizio=" . $hour . "&fine=" . $hours[$key + 1] . "&data=" . date("Y-m-d", strtotime($inizio)) . "&aula=" . $room . "'><i class='fa fa-plus-circle' aria-hidden='true'></i></a></td>";
                 }
 
                 echo "</tr>";

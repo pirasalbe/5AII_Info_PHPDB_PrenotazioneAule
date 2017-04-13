@@ -1,5 +1,5 @@
 <?php
-include("script/sql.php");
+include("script/recursive.php");
 
 if ($logged == 0) {
     header("location: login");
@@ -29,46 +29,81 @@ if ($logged == 0) {
 
         <div class="row form-group">
             <div class="col-sm-2">
-                <label for="username">Username: </label>
+                <label for="aula">Aula: </label>
             </div>
             <div class="col-sm-4">
-                <input name="username" class="form-control" maxlength="20">
+                <select name="aula" class="form-control">
+                    <?php
+
+                    $result = rooms();
+
+                    if (isset($result) && $result != null) {
+                        while ($row = $result->fetch_assoc()) {
+                            $selected = "";
+                            if ($row['numero'] == $_REQUEST['aula']) $selected = "selected";
+                            echo "<option value='" . $row['numero'] . "' " . $selected . ">" . $row["nome"] . " Tipo: " . $row["type"] . "</option>";
+                        }
+                    }
+
+                    ?>
+                </select>
             </div>
             <div class="col-sm-2">
-                <label for="password">Password: </label>
+                <label for="date">Data: </label>
             </div>
             <div class="col-sm-4">
-                <input name="password" class="form-control" maxlength="20">
+                <input type="date" value="<?php echo $_REQUEST['data']; ?>" name="date" class="form-control">
             </div>
         </div>
 
         <div class="row form-group">
             <div class="col-sm-2">
-                <label for="name">Nome: </label>
+                <label for="descrizione">Descrizione: </label>
             </div>
-            <div class="col-sm-4">
-                <input name="name" class="form-control" maxlength="20">
-            </div>
-            <div class="col-sm-2">
-                <label for="admin">Admin: </label>
-            </div>
-            <div class="col-sm-1 checkbox">
-                <input name="admin" value="si" type="checkbox" maxlength="20">
-            </div>
-            <div class="col-sm-2">
-                <label for="attivo">Attivo: </label>
-            </div>
-            <div class="col-sm-1 checkbox">
-                <input name="attivo" value="si" type="checkbox" maxlength="20">
+            <div class="col-sm-10">
+                <input name="descrizione" class="form-control" maxlength="50">
             </div>
         </div>
 
-        <br>
+        <div class="row form-group">
+            <div class="col-sm-2">
+                <label for="orai">Ora inizio: </label>
+            </div>
+            <div class="col-sm-4">
+                <select name="orai" class="form-control">
+                    <?php
+
+                    foreach ($hours as $hour) {
+                        $selected = "";
+                        if ($hour == $_REQUEST['inizio']) $selected = "selected";
+                        echo "<option value='" . $hour . "' " . $selected . ">" . $hour . "</option>";
+                    }
+
+                    ?>
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <label for="oraf">Ora fine: </label>
+            </div>
+            <div class="col-sm-4">
+                <select name="oraf" class="form-control">
+                    <?php
+
+                    foreach ($hours as $hour) {
+                        $selected = "";
+                        if ($hour == $_REQUEST['fine']) $selected = "selected";
+                        echo "<option value='" . $hour . "' " . $selected . ">" . $hour . "</option>";
+                    }
+
+                    ?>
+                </select>
+            </div>
+        </div>
 
         <div class="row form-group">
-            <div class="col-sm-4">
+            <div class="col-sm-2">
                 <button type="submit" class="form-control">
-                    Aggiungi/Aggiorna
+                    Richiedi
                 </button>
             </div>
         </div>

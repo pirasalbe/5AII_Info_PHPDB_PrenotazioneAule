@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+include("sql.php");
+
 /*if ($_SERVER["HTTPS"] != "on") {
     header("Location: https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]);
     exit();
@@ -21,9 +23,32 @@ function printNavbar($admin)
 
     $user = "Area Riservata";
     $log = "Login";
+
     if ($logged == 1) {
         $log = "Logout";
         $user = $_SESSION['user'];
+        if(admin()){
+            $result = booking(true);
+            $cont = 0;
+
+            if (isset($result) && $result != null) {
+                while ($row = $result->fetch_assoc()) {
+                    if ($row["attiva"] == "no")
+                        $cont++;
+                }
+            }
+
+            $result = users();
+
+            if (isset($result) && $result != null) {
+                while ($row = $result->fetch_assoc()) {
+                    if ($row["attivo"] == "no")
+                        $cont++;
+                }
+            }
+
+            $user = $user . " <span class='badge'>" . $cont . "</span>";
+        }
     }
 
     echo "<!--- header --->
