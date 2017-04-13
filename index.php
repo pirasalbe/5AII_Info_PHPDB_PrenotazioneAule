@@ -1,12 +1,6 @@
 <?php
 include("script/sql.php");
 
-$hours = array("07:45", "08:40", "09:35", "10:30",
-    "11:40", "12:35", "13:30", "14:00",
-    "15:00", "16:00", "17:00", "18:00",
-    "18:30", "19:20", "20:10", "21:10",
-    "22:00", "22:50", "23:40");
-
 $tipo = "Attrezzatura Informatica";
 if (isset($_REQUEST['tipo']))
     $tipo = $_REQUEST['tipo'];
@@ -148,6 +142,8 @@ if (isset($_REQUEST['date'])) {
             }
 
             foreach ($hours as $key => $hour) {
+                if ($key + 1 >= count($hours)) continue;
+
                 echo "<tr>";
 
                 echo "<td>" . $hour . "</td>";
@@ -156,14 +152,14 @@ if (isset($_REQUEST['date'])) {
                     $null = true;
                     foreach ($bookings as $book) {
                         if ($room == $row['aula'])
-                            if ($row['inizio'] >= $hour && $row['fine'] <= $hours[$key - 1]) {
+                            if ($row['inizio'] >= $hour && $row['fine'] <= $hours[$key + 1]) {
                             }
                         echo "<td>" . $row['descrizioni'] . " " . $row['utenti.nome'] . "<td>";
                         $null = false;
                     }
 
                     if ($null)
-                        echo "<td><a href='#'><i class='fa fa-plus-circle' aria-hidden='true'></i></a></td>";
+                        echo "<td><a href='book?inizio=" . $hour . "&fine=" . $hours[$key + 1] . "&aula=" . $room . "'><i class='fa fa-plus-circle' aria-hidden='true'></i></a></td>";
                 }
 
                 echo "</tr>";

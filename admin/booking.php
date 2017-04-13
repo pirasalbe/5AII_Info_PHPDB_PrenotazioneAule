@@ -1,8 +1,8 @@
 <?php
 include("../script/sql.php");
 
-if ($logged == 0) {
-    header("location: ../login");
+if ($logged == 0 || !admin()) {
+    header("location: ../index");
 }
 
 //user

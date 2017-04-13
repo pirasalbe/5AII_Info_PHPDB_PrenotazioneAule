@@ -1,30 +1,31 @@
 <?php
-include("../script/sql.php");
+include("script/sql.php");
 
-if ($logged == 0 || !admin()) {
-    header("location: ../index");
+if ($logged == 0) {
+    header("location: login");
 }
 ?>
 
 <html>
 <head>
     <title>
-        Utenti
+        Prenota
     </title>
     <?php printHeader(); ?>
 </head>
 
 <body>
 <!--- header --->
-<?php printNavbar(true); ?>
+<?php printNavbar(false); ?>
 
 <br>
 
 <!--- body --->
 
-<!--- create user --->
+<!--- create booking --->
 <div class="container">
-    <form action="../script/addUser">
+    <h1>Prenotati</h1><br>
+    <form action="script/book">
 
         <div class="row form-group">
             <div class="col-sm-2">
@@ -62,6 +63,8 @@ if ($logged == 0 || !admin()) {
             </div>
         </div>
 
+        <br>
+
         <div class="row form-group">
             <div class="col-sm-4">
                 <button type="submit" class="form-control">
@@ -70,44 +73,6 @@ if ($logged == 0 || !admin()) {
             </div>
         </div>
     </form>
-</div>
-
-<br>
-
-<!--- Users --->
-<div class="container">
-    <div class="table-responsive">
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Username</th>
-                <th>Password</th>
-                <th>Admin</th>
-                <th>Nome</th>
-                <th>Attivo</th>
-            </tr>
-            </thead>
-
-            <tbody>
-            <?php
-            $result = users();
-
-            if (isset($result) && $result != null) {
-                while ($row = $result->fetch_assoc()) {
-                    echo "<tr>
-                                        <td>" . $row["username"] . "</td>
-                                        <td>**********</td>
-                                        <td>" . $row["admin"] . "</td>
-                                        <td>" . $row["nome"] . "</td>
-										<td><a href='../script/changeUser?user=" . $row["username"] . "&stato=" . $row["attivo"] . "'>" . $row["attivo"] . "</a></td>
-										<td><a href='../script/deleteUser?username=" . $row["username"] . "'>Elimina</a></td>
-										</tr>";
-                }
-            }
-            ?>
-            </tbody>
-        </table>
-    </div>
 </div>
 
 </body>
