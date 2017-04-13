@@ -153,7 +153,7 @@ if (isset($_REQUEST['date'])) {
                     $null = true;
                     foreach ($bookings as $book) {
                         if ($room == $book['aula'])
-                            if (date("H:i", strtotime($book['inizio'])) == $hour || date("H:i", strtotime($book['fine'])) == $hours[$key + 1]) {
+                            if (date("H:i", strtotime($book['inizio'])) <= $hour && date("H:i", strtotime($book['fine'])) >= $hours[$key + 1]) {
                                 echo "<td>" . $book['nome'] . ": " . $book['dettagli'] . "<td>";
                                 $null = false;
                             }

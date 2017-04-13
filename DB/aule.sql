@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Apr 13, 2017 alle 13:35
+-- Creato il: Apr 13, 2017 alle 15:21
 -- Versione del server: 10.1.21-MariaDB
 -- Versione PHP: 7.1.1
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `aula` (
   `numero` int(11) NOT NULL,
   `nome` varchar(20) NOT NULL,
-  `descrizione` varchar(20) DEFAULT NULL,
+  `descrizione` varchar(50) DEFAULT NULL,
   `type` enum('Attrezzatura Informatica','Aule speciali','Piano Rialzato','Primo Piano','Secondo Piano') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -72,10 +72,18 @@ CREATE TABLE `messages` (
 CREATE TABLE `prenotazioni` (
   `utente` varchar(20) NOT NULL,
   `aula` int(11) NOT NULL,
-  `inizio` date NOT NULL,
-  `fine` date NOT NULL,
+  `dettagli` varchar(50) NOT NULL,
+  `inizio` varchar(20) NOT NULL,
+  `fine` varchar(20) NOT NULL,
   `attiva` enum('si','no') NOT NULL DEFAULT 'no'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `prenotazioni`
+--
+
+INSERT INTO `prenotazioni` (`utente`, `aula`, `dettagli`, `inizio`, `fine`, `attiva`) VALUES
+('giuliopertile', 2, 'prova', '2017-04-13 08:40:00', '2017-04-13 12:35:00', 'si');
 
 -- --------------------------------------------------------
 
@@ -96,7 +104,7 @@ CREATE TABLE `utenti` (
 --
 
 INSERT INTO `utenti` (`username`, `password`, `admin`, `nome`, `attivo`) VALUES
-('esterno1', 'rossiesterno1', 'no', 'Esterno', 'si'),
+('esterno1', 'rossiesterno1', 'no', 'Esterno', 'no'),
 ('giuliopertile', 'banane', 'no', 'Giulio Pertile', 'si'),
 ('pirasalbe', 'chicco70', 'si', 'Alberto Piras', 'si');
 
