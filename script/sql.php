@@ -54,6 +54,42 @@ function login($user, $pass)
     close($conn);
 }
 
+//perform sign in
+function signin($user, $pass, $name)
+{
+    $sql = "insert into utenti(username, password, nome)
+            VALUES (?,?,?)";
+
+    $conn = init();
+
+    if ($stmt = $conn->prepare($sql)) {
+
+        /* bind parameters for markers */
+        $stmt->bind_param("sss", $user, $pass, $name);
+
+        /* execute query */
+        $stmt->execute();
+
+        /* bind result variables */
+        $stmt->bind_result($user, $pass);
+
+        /* fetch value */
+        if ($stmt->fetch()) {
+            $_SESSION['user'] = $user;
+            echo "Logged";
+            header("location: ../index");
+        } else {
+            echo "Wrong password";
+            header("location: ../login");
+        }
+
+        /* close statement */
+        $stmt->close();
+    }
+
+    close($conn);
+}
+
 //am i an admin
 function admin()
 {
