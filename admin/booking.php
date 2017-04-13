@@ -30,7 +30,7 @@ if (isset($_REQUEST['username']))
 
     <!--- Users --->
     <div class="row form-group">
-        <form action="booking.php" method="post">
+        <form action="booking.php" method="get">
             <div class="col-sm-2">
                 <label for="username">Utente: </label>
             </div>
@@ -43,7 +43,7 @@ if (isset($_REQUEST['username']))
 
                     if (isset($result) && $result != null) {
                         while ($row = $result->fetch_assoc()) {
-                            if ($user == "all" || $user == $row["username"])
+                            if ($user == "all" || $user != $row["username"])
                                 echo "<option value='" . $row["username"] . "'>" . $row["username"] . "</option>";
                         }
                     }
@@ -81,7 +81,8 @@ if (isset($_REQUEST['username']))
 
             if (isset($result) && $result != null) {
                 while ($row = $result->fetch_assoc()) {
-                    echo "<tr>
+                    if ($user == $row["utente"] || $user == "all") {
+                        echo "<tr>
                             <td>" . $row["utente"] . "</td>
                             <td>" . $row["numero"] . "</td>
                             <td>" . $row["nome"] . "</td>
@@ -92,6 +93,7 @@ if (isset($_REQUEST['username']))
                             <td><a href='../script/changeBooking?user=" . $row["utente"] . "&aula=" . $row["numero"] . "&stato=" . $row["attiva"] . "'>" . $row["attiva"] . "</a></td>
                             <td><a href='../script/deleteBooking?aula=" . $row["numero"] . "&link=admin' class=\"btn btn-default\">Elimina</a></td>
                         </tr>";
+                    }
                 }
             }
             ?>
