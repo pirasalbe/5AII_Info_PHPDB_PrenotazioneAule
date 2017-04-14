@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Apr 13, 2017 alle 15:21
+-- Creato il: Apr 14, 2017 alle 13:35
 -- Versione del server: 10.1.21-MariaDB
 -- Versione PHP: 7.1.1
 
@@ -70,6 +70,7 @@ CREATE TABLE `messages` (
 --
 
 CREATE TABLE `prenotazioni` (
+  `cod` int(11) NOT NULL,
   `utente` varchar(20) NOT NULL,
   `aula` int(11) NOT NULL,
   `dettagli` varchar(50) NOT NULL,
@@ -82,8 +83,8 @@ CREATE TABLE `prenotazioni` (
 -- Dump dei dati per la tabella `prenotazioni`
 --
 
-INSERT INTO `prenotazioni` (`utente`, `aula`, `dettagli`, `inizio`, `fine`, `attiva`) VALUES
-('giuliopertile', 2, 'prova', '2017-04-13 08:40:00', '2017-04-13 12:35:00', 'si');
+INSERT INTO `prenotazioni` (`cod`, `utente`, `aula`, `dettagli`, `inizio`, `fine`, `attiva`) VALUES
+(0, 'giuliopertile', 2, 'prova', '2017-04-13 08:40:00', '2017-04-13 12:35:00', 'si');
 
 -- --------------------------------------------------------
 
@@ -105,7 +106,7 @@ CREATE TABLE `utenti` (
 
 INSERT INTO `utenti` (`username`, `password`, `admin`, `nome`, `attivo`) VALUES
 ('esterno1', 'rossiesterno1', 'no', 'Esterno', 'no'),
-('giuliopertile', 'banane', 'no', 'Giulio Pertile', 'si'),
+('giuliopertile', 'banana', 'no', 'Giulio Pertile', 'si'),
 ('pirasalbe', 'chicco70', 'si', 'Alberto Piras', 'si');
 
 --
@@ -128,7 +129,7 @@ ALTER TABLE `messages`
 -- Indici per le tabelle `prenotazioni`
 --
 ALTER TABLE `prenotazioni`
-  ADD PRIMARY KEY (`utente`,`aula`);
+  ADD PRIMARY KEY (`cod`);
 
 --
 -- Indici per le tabelle `utenti`

@@ -191,8 +191,10 @@ function bookings($inizio, $fine, $type)
 function users()
 {
     $sql = "SELECT * 
-			FROM utenti
-			where username<>?";
+			FROM utenti";
+
+    if (isset($_SESSION['user']))
+        " where username<>?";
 
     $conn = init();
 
@@ -201,7 +203,8 @@ function users()
     if ($stmt = $conn->prepare($sql)) {
 
         /* bind parameters for markers */
-        $stmt->bind_param("s", $_SESSION['user']);
+        if (isset($_SESSION['user']))
+            $stmt->bind_param("s", $_SESSION['user']);
 
         /* execute query */
         $stmt->execute();

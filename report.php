@@ -29,17 +29,30 @@ include("script/recursive.php");
     <form action="" method="post">
         <div class="row form-group">
             <div class="col-sm-2">
-                <label for="datai">Data inizio: </label>
+                <label for="aula">Aula: </label>
             </div>
             <div class="col-sm-4">
-                <input type="date" name="datai" class="form-control">
-            </div>
+                <select name="aula" class="form-control">
+                    <?php
 
+                    $result = rooms();
+
+                    if (isset($result) && $result != null) {
+                        while ($row = $result->fetch_assoc()) {
+                            $selected = "";
+                            if ($row['numero'] == $_REQUEST['aula']) $selected = "selected";
+                            echo "<option value='" . $row['numero'] . "' " . $selected . ">" . $row["nome"] . " Tipo: " . $row["type"] . "</option>";
+                        }
+                    }
+
+                    ?>
+                </select>
+            </div>
             <div class="col-sm-2">
-                <label for="dataf">Data fine: </label>
+                <label for="date">Data: </label>
             </div>
             <div class="col-sm-4">
-                <input type="date" name="dataf" class="form-control">
+                <input type="date" value="<?php echo date("Y-m-d", strtotime($_REQUEST['data'])); ?>" name="date" class="form-control">
             </div>
         </div>
 
@@ -47,16 +60,36 @@ include("script/recursive.php");
 
         <div class="row form-group">
             <div class="col-sm-2">
-                <label for="area">Area: </label>
+                <label for="orai">Ora inizio: </label>
             </div>
             <div class="col-sm-4">
-                <input name="area" class="form-control">
+                <select name="orai" class="form-control">
+                    <?php
+
+                    echo "<option value=''>Tutto il giorno</option>";
+
+                    foreach ($hours as $hour) {
+                        echo "<option value='" . $hour . "' " . ">" . $hour . "</option>";
+                    }
+
+                    ?>
+                </select>
             </div>
             <div class="col-sm-2">
-                <label for="stanza">Stanza: </label>
+                <label for="oraf">Ora fine: </label>
             </div>
             <div class="col-sm-4">
-                <input name="stanza" class="form-control">
+                <select name="oraf" class="form-control">
+                    <?php
+
+                    echo "<option value=''>Tutto il giorno</option>";
+
+                    foreach ($hours as $hour) {
+                        echo "<option value='" . $hour . "' " . ">" . $hour . "</option>";
+                    }
+
+                    ?>
+                </select>
             </div>
         </div>
 
@@ -64,63 +97,29 @@ include("script/recursive.php");
 
         <div class="row form-group">
             <div class="col-sm-2">
-                <label for="area">Tipo: </label>
+                <label for="descrizione">Descrizione: </label>
             </div>
-            <div class="col-sm-2">
-                <label class="radio-inline">
-                    <input type="radio" name="interno" value="0">Esterno
-                </label>
-            </div>
-            <div class="col-sm-2">
-                <label class="radio-inline">
-                    <input type="radio" name="interno" value="1">Interno
-                </label>
+            <div class="col-sm-4">
+                <input name="descrizione" class="form-control" maxlength="50">
             </div>
             <div class="col-sm-2">
                 <label for="autore">Creato da: </label>
             </div>
             <div class="col-sm-4">
-                <input name="autore" class="form-control">
-            </div>
-        </div>
+                <select name="oraf" class="form-control">
+                    <?php
 
-        <br>
+                    $result = users();
 
-        <div class="row form-group">
-            <div class="col-sm-2">
-                <label for="breve">Descrizione breve: </label>
-            </div>
-            <div class="col-sm-4">
-                <input name="breve" class="form-control">
-            </div>
-            <div class="col-sm-2">
-                <label for="completa">Descrizione completa: </label>
-            </div>
-            <div class="col-sm-4">
-                <input name="completa" class="form-control">
-            </div>
-        </div>
+                    echo "<option value='" . $_SESSION['user'] . "' " . ">Me</option>";
 
-        <br>
-
-        <div class="row form-group">
-            <div class="col-sm-2">
-                <label for="area">Includi: </label>
-            </div>
-            <div class="col-sm-2">
-                <label class="radio-inline">
-                    <input type="radio" name="sommario" value="0">Solo Report
-                </label>
-            </div>
-            <div class="col-sm-2">
-                <label class="radio-inline">
-                    <input type="radio" name="sommario" value="1">Solo Raggruppamento
-                </label>
-            </div>
-            <div class="col-sm-2">
-                <label class="radio-inline">
-                    <input type="radio" name="sommario" value="2">Entrambi
-                </label>
+                    if (isset($result) && $result != null) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<option value='" . $row["username"] . "' " . ">" . $row["nome"] . "</option>";
+                        }
+                    }
+                    ?>
+                </select>
             </div>
         </div>
 
@@ -132,7 +131,7 @@ include("script/recursive.php");
             </div>
             <div class="col-sm-2">
                 <label class="radio-inline">
-                    <input type="radio" name="ordine" value="0">Sala
+                    <input type="radio" name="ordine" value="0" checked>Sala
                 </label>
             </div>
             <div class="col-sm-2">
@@ -146,29 +145,11 @@ include("script/recursive.php");
 
         <div class="row form-group">
             <div class="col-sm-2">
-                <label for="area">Mostra: </label>
-            </div>
-            <div class="col-sm-2">
-                <label class="radio-inline">
-                    <input type="radio" name="mostra" value="0">Durata
-                </label>
-            </div>
-            <div class="col-sm-2">
-                <label class="radio-inline">
-                    <input type="radio" name="mostra" value="1">Termine
-                </label>
-            </div>
-        </div>
-
-        <br>
-
-        <div class="row form-group">
-            <div class="col-sm-2">
                 <label for="area">Raggruppa per: </label>
             </div>
             <div class="col-sm-2">
                 <label class="radio-inline">
-                    <input type="radio" name="raggruppamento" value="0">Descrizione
+                    <input type="radio" name="raggruppamento" value="0" checked>Descrizione
                 </label>
             </div>
             <div class="col-sm-2">
