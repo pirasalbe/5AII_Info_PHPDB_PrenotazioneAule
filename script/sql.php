@@ -187,6 +187,37 @@ function bookings($inizio, $fine, $type)
     return $result;
 }
 
+//look for booking
+function report($utente, $dettagli, $aula, $inizio, $fine, $ordine)
+{
+    $sql = "SELECT * 
+			FROM prenotazioni p inner join aula a on p.aula=a.numero 
+			inner join utenti u on p.utente=u.username 
+			where p.utente like ? and p.dettagli like ? and p.aula like ?
+			and p.inizio>=? and p.fine<=? 
+			order by ?";
+
+    $conn = init();
+
+    $result = null;
+
+    if ($stmt = $conn->prepare($sql)) {
+
+        /* bind parameters for markers */
+        $stmt->bind_param("ssssss", $utente, $dettagli, $aula, $inizio, $fine, $ordine);
+
+        /* execute query */
+        $stmt->execute();
+
+        /* instead of bind_result: */
+        $result = $stmt->get_result();
+    }
+
+    close($conn);
+
+    return $result;
+}
+
 //user list
 function users()
 {

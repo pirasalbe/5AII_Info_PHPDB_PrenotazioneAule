@@ -1,5 +1,43 @@
 <?php
 include("script/recursive.php");
+
+if (isset($_REQUEST['ok'])) {
+    $aula = "";
+    if (isset($_REQUEST['aula']))
+        $aula = $_REQUEST['aula'];
+
+    $data = date("Y-m-d", strtotime("today"));
+    if (isset($_REQUEST['date']))
+        $data = $_REQUEST['date'];
+
+    $orai = "";
+    if (isset($_REQUEST['orai']))
+        $orai = $_REQUEST['orai'];
+
+    $oraf = "";
+    if (isset($_REQUEST['oraf']))
+        $oraf = $_REQUEST['oraf'];
+
+
+    $descrizione = "";
+    if (isset($_REQUEST['descrizione']))
+        $descrizione = $_REQUEST['descrizione'];
+
+    $utente = "";
+    if (isset($_REQUEST['utente']))
+        $utente = $_REQUEST['utente'];
+
+    $ordine = "";
+    if (isset($_REQUEST['ordine']))
+        $ordine = $_REQUEST['ordine'];
+
+
+    $inizio = $data . " " . $orai;
+    $fine = $data . " " . $oraf;
+
+    $report = report($utente . "%", $descrizione . "%", $aula . "%", $inizio, $fine, $ordine);
+}
+
 ?>
 
 <html>
@@ -26,7 +64,7 @@ include("script/recursive.php");
     </div>
 
     <!--- Report form --->
-    <form action="" method="post">
+    <form action="report" method="post">
         <div class="row form-group">
             <div class="col-sm-2">
                 <label for="aula">Aula: </label>
@@ -37,11 +75,11 @@ include("script/recursive.php");
 
                     $result = rooms();
 
+                    echo "<option value=''>Tutte</option>";
+
                     if (isset($result) && $result != null) {
                         while ($row = $result->fetch_assoc()) {
-                            $selected = "";
-                            if ($row['numero'] == $_REQUEST['aula']) $selected = "selected";
-                            echo "<option value='" . $row['numero'] . "' " . $selected . ">" . $row["nome"] . " Tipo: " . $row["type"] . "</option>";
+                            echo "<option value='" . $row['numero'] . "'>" . $row["nome"] . " Tipo: " . $row["type"] . "</option>";
                         }
                     }
 
@@ -52,7 +90,8 @@ include("script/recursive.php");
                 <label for="date">Data: </label>
             </div>
             <div class="col-sm-4">
-                <input type="date" value="<?php echo date("Y-m-d", strtotime($_REQUEST['data'])); ?>" name="date" class="form-control">
+                <input type="date" value="<?php echo date("Y-m-d", strtotime("today")); ?>" name="date"
+                       class="form-control">
             </div>
         </div>
 
@@ -103,15 +142,18 @@ include("script/recursive.php");
                 <input name="descrizione" class="form-control" maxlength="50">
             </div>
             <div class="col-sm-2">
-                <label for="autore">Creato da: </label>
+                <label for="utente">Creato da: </label>
             </div>
             <div class="col-sm-4">
-                <select name="oraf" class="form-control">
+                <select name="utente" class="form-control">
                     <?php
 
                     $result = users();
 
-                    echo "<option value='" . $_SESSION['user'] . "' " . ">Me</option>";
+                    echo "<option value=''>Tutti</option>";
+
+                    if (isset($_SESSION['user']))
+                        echo "<option value='" . $_SESSION['user'] . "' " . ">Me</option>";
 
                     if (isset($result) && $result != null) {
                         while ($row = $result->fetch_assoc()) {
@@ -127,7 +169,7 @@ include("script/recursive.php");
 
         <div class="row form-group">
             <div class="col-sm-2">
-                <label for="area">Ordina per: </label>
+                <label for="ordine">Ordina per: </label>
             </div>
             <div class="col-sm-2">
                 <label class="radio-inline">
@@ -145,29 +187,28 @@ include("script/recursive.php");
 
         <div class="row form-group">
             <div class="col-sm-2">
-                <label for="area">Raggruppa per: </label>
-            </div>
-            <div class="col-sm-2">
-                <label class="radio-inline">
-                    <input type="radio" name="raggruppamento" value="0" checked>Descrizione
-                </label>
-            </div>
-            <div class="col-sm-2">
-                <label class="radio-inline">
-                    <input type="radio" name="mostra" value="1">Creatore
-                </label>
-            </div>
-        </div>
-
-        <br>
-
-        <div class="row form-group">
-            <div class="col-sm-2">
-                <button type="submit" class="btn btn-default">Report</button>
+                <button type="submit" name="ok" class="btn btn-default">Report</button>
             </div>
         </div>
 
     </form>
+
+    <!--- Risultati report --->
+    <?php
+    $result = array();
+
+    if (isset($report) && $report != null) {
+        while ($row = $report->fetch_assoc()) {
+            array_push($result, $row);
+        }
+    }
+
+    foreach ($result as $row) {
+        echo "<h1>" . $row['aula'] . "</h1>";
+    }
+
+    ?>
+
 </div>
 </body>
 </html>
