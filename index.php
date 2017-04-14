@@ -39,9 +39,19 @@ if ($_SESSION['calendar'] == "day") {
         $fine = date("Y-m-d", strtotime($_SESSION['date'] . "sunday this week")) . " 23:23:59";
     }
 } else {
-    $_SESSION['calendar'] = "month";
-}
+    $inizio = date("Y-m-d", strtotime("first day of this month")) . " 00:00:01";
+    $fine = date("Y-m-d", strtotime("last day of this month")) . " 23:23:59";
+    if (!isset($_SESSION['date']))
+        $_SESSION['date'] = date("D d M Y", strtotime("first day of this month"));
 
+    //date
+    if (isset($_REQUEST['date'])) {
+        if ($_REQUEST['date'] != "")
+            $_SESSION['date'] = date("D d M Y", strtotime($_REQUEST['date']));
+        $inizio = date("Y-m-1", strtotime($_SESSION['date'])) . " 00:00:01";
+        $fine = date("Y-m-t", strtotime($_SESSION['date'])) . " 23:23:59";
+    }
+}
 
 if (!isset($_SESSION['aula']))
     $_SESSION['aula'] = "-1";
@@ -346,6 +356,135 @@ if ($calendar == "week") {
 ?>
 
 <!--- Months --->
+
+<?php
+
+if ($calendar == "month") {
+    echo "<div class='container navbar'>
+    <ul class='nav navbar-nav list-group-item-info'>";
+
+    //rooms
+    $result = rooms();
+
+    if (isset($result) && $result != null) {
+        while ($row = $result->fetch_assoc()) {
+            if ($row["type"] == $tipo) {
+                $class = "";
+                if ($aula == $row["numero"])
+                    $class = "alert-warning";
+                echo "<li class='" . $class . "''><a
+                    href='index?&tipo=" . $tipo . "&aula=" . $row['numero'] . "'>" . $row['nome'] . "</a></li>";
+            }
+        }
+    }
+
+
+    echo "</ul>
+</div>
+
+<div class='container'>
+
+    <div class='row'>
+        <div class='col-sm-4'>
+        </div>
+        <div class='col-sm-4'>
+            <h3>" . $date . "</h3>
+        </div>
+        <div class='col-sm-4'>
+        </div>
+    </div>
+
+    <br>
+
+    <div class='row'>
+        <div class='col-sm-3'>
+        </div>
+        <form action='index''>
+            <div class='col-sm-3'>
+                <input type='month' name='date' class='form-control'>
+            </div>
+            <div class='col-sm-3'>
+                <input type='submit' class='btn btn-default' value='Vai a'>
+            </div>
+        </form>
+        <div class='col-sm-3'>
+        </div>
+    </div>
+
+    <br>
+
+    <div class='row'>
+        <div class='col-sm-4'>
+            <a href='index?date=" . date('Y-m-d', strtotime($date . "first day of previous month")) . "'>Vai al mese precedente</a>
+        </div>
+        <div class='col-sm-4'>
+            <a href='index?date=" . date("Y-m-d", strtotime("first day of this month")) . "'>Vai al mese corrente</a>
+        </div>
+        <div class='col-sm-4'>
+            <a href='index?date=" . date('Y-m-d', strtotime($date . "first day of next month")) . "'>Vai al prossimo mese</a>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<div class='container'>
+
+<div class='table-responsive'>
+    <table class='table'>
+        <thead>
+        <tr>";
+
+    //days
+    for ($i = 0; $i < 7; $i++)
+        echo "<th>" . date("D", strtotime("Monday " . " + " . $i . "days")) . "</th>";
+
+    echo "</tr>
+    </thead>
+
+    <tbody>";
+
+    $bookings = array();
+
+    //save bookings
+    $result = bookings($inizio, $fine, $tipo);
+
+    if (isset($result) && $result != null) {
+        while ($row = $result->fetch_assoc()) {
+            if ($row["attiva"] == "si")
+                array_push($bookings, $row);
+        }
+    }
+
+    for ($k = 1; $k <= date("t", strtotime($date)); $k++) {
+        if (date("N", strtotime(date("Y-m-", strtotime($date)) . $k)) == 1)
+        echo "<tr>";
+        if ($k == 1)
+            for ($j = 1; $j < date("N", strtotime(date("Y-m-", strtotime($date)) . $k)); $j++)
+                echo "<td></td>";
+
+
+                echo "<td>";
+
+        foreach ($bookings as $book) {
+            if ($aula == $book['aula']) {
+                if (date("Y-m-d", strtotime(date("Y-m-", strtotime($date)) . $k)) == date("Y-m-d", strtotime($book['inizio'])))
+                    echo "<a href='info?utente=" . $book['utente'] . "&aula=" . $book['aula'] . "&dettagli=" . $book['dettagli'] . "&inizio=" . $book['inizio'] . "&fine=" . $book['fine'] . "'><i class='fa fa-address-card-o' aria-hidden='true'></i></a> ";
+            }
+        }
+
+        echo "<a href='book?inizio=" . $hours[0] . "&fine=" . $hours[1] . "&data=" . date("Y-m-d", strtotime($inizio)) . "&aula=" . $aula . "'><i class='fa fa-plus-circle' aria-hidden='true'></i></a></td>";
+
+        if (date("N", strtotime(date("Y-m-", strtotime($date)) . $k)) == 7)
+            echo "</tr>";
+    }
+
+    echo "</tbody>
+    </table>
+    </div>
+    </div>";
+}
+?>
 
 <!--- Legenda --->
 <div class="container">
