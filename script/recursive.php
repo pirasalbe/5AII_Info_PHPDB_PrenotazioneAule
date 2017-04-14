@@ -61,9 +61,9 @@ function printNavbar($admin)
 						<li class='dropdown'>
 							<a class='dropdown-toggle' data-toggle='dropdown' href='#'>Visualizzazione<span class='caret'></span></a>
 							<ul class='dropdown-menu'>
-								<li><a href='" . $admin . "#'>Giorni</a></li>
-								<li><a href='" . $admin . "#'>Settimane</a></li>
-								<li><a href='" . $admin . "#'>Mesi</a></li>
+								<li><a href='" . $admin . "index?cal=day'>Giorni</a></li>
+								<li><a href='" . $admin . "index?cal=week'>Settimane</a></li>
+								<li><a href='" . $admin . "index?cal=month'>Mesi</a></li>
 							</ul>
 						</li>
 						
