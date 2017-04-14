@@ -19,7 +19,7 @@ if ($_SESSION['calendar'] == "day") {
         $_SESSION['date'] = date("D d M Y");
 } else if ($_SESSION['calendar'] == "week") {
     $inizio = date("Y-m-d", strtotime("monday this week")) . " 00:00:01";
-    $fine = date("Y-m-d", strtotime("monday this week")) . " 23:23:59";
+    $fine = date("Y-m-d", strtotime("sunday this week")) . " 23:23:59";
     if (!isset($_SESSION['date']))
         $_SESSION['date'] = date("D d M Y", strtotime("monday this week"));
 } else {
@@ -183,7 +183,7 @@ if ($calendar == "day") {
             foreach ($bookings as $book) {
                 if ($room == $book['aula'])
                     if (date("H:i", strtotime($book['inizio'])) <= $hour && date("H:i", strtotime($book['fine'])) >= $hours[$key + 1]) {
-                        echo "<td>" . $book['nome'] . ": " . $book['dettagli'] . "<td>";
+                        echo "<td><a href='info?utente=" . $book['utente'] . "&aula=" . $book['aula'] . "&dettagli=" . $book['dettagli'] . "&inizio=" . $book['inizio'] . "&fine=" . $book['fine'] . "'><i class='fa fa-address-card-o' aria-hidden='true'></i></a><td>";
                         $null = false;
                     }
             }
@@ -313,18 +313,19 @@ if ($calendar == "week") {
 
         echo "<td>" . $hour . "</td>";
 
-        foreach ($rooms as $room) {
+        for ($i = 0; $i < 7; $i++) {
             $null = true;
             foreach ($bookings as $book) {
-                if ($room == $book['aula'])
-                    if (date("H:i", strtotime($book['inizio'])) <= $hour && date("H:i", strtotime($book['fine'])) >= $hours[$key + 1]) {
-                        echo "<td>" . $book['nome'] . ": " . $book['dettagli'] . "<td>";
-                        $null = false;
-                    }
+                if ($aula == $book['aula'])
+                    if (date("Y-m-d", strtotime($date . " + " . $i . "days")) == date("Y-m-d", strtotime($book['inizio'])))
+                        if (date("H:i", strtotime($book['inizio'])) <= $hour && date("H:i", strtotime($book['fine'])) >= $hours[$key + 1]) {
+                            echo "<td><a href='info?utente=" . $book['utente'] . "&aula=" . $book['aula'] . "&dettagli=" . $book['dettagli'] . "&inizio=" . $book['inizio'] . "&fine=" . $book['fine'] . "'><i class='fa fa-address-card-o' aria-hidden='true'></i></a><td>";
+                            $null = false;
+                        }
             }
 
             if ($null)
-                echo "<td><a href='book?inizio=" . $hour . "&fine=" . $hours[$key + 1] . "&data=" . date("Y-m-d", strtotime($inizio)) . "&aula=" . $room . "'><i class='fa fa-plus-circle' aria-hidden='true'></i></a></td>";
+                echo "<td><a href='book?inizio=" . $hour . "&fine=" . $hours[$key + 1] . "&data=" . date("Y-m-d", strtotime($inizio)) . "&aula=" . $aula . "'><i class='fa fa-plus-circle' aria-hidden='true'></i></a></td>";
         }
 
         echo "</tr>";
@@ -339,6 +340,23 @@ if ($calendar == "week") {
 
 <!--- Months --->
 
+<!--- Legenda --->
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-2 alert-success">
+            Non prenotato <i class='fa fa-plus-circle' aria-hidden='true'></i>
+        </div>
+        <div class="col-sm-1">
+
+        </div>
+        <div class="col-sm-2 alert-info">
+            Prenotato <i class='fa fa-bookmark' aria-hidden='true'></i>
+        </div>
+    </div>
+</div>
+
+<br>
 
 </body>
 </html>
