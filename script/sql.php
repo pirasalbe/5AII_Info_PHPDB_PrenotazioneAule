@@ -190,7 +190,7 @@ function bookings($inizio, $fine, $type)
 //look for booking
 function report($utente, $dettagli, $aula, $inizio, $fine, $ordine)
 {
-    $sql = "SELECT * 
+    $sql = "SELECT a.nome, p.utente, p.aula, p.inizio, p.fine, p.dettagli
 			FROM prenotazioni p inner join aula a on p.aula=a.numero 
 			inner join utenti u on p.utente=u.username 
 			where p.utente like ? and p.dettagli like ? and p.aula like ?

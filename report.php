@@ -10,13 +10,15 @@ if (isset($_REQUEST['ok'])) {
     if (isset($_REQUEST['date']))
         $data = $_REQUEST['date'];
 
-    $orai = "";
+    $orai = "00:00:01";
     if (isset($_REQUEST['orai']))
-        $orai = $_REQUEST['orai'];
+        if ($_REQUEST['orai'] != "")
+            $orai = $_REQUEST['orai'];
 
-    $oraf = "";
+    $oraf = "23:23:59";
     if (isset($_REQUEST['oraf']))
-        $oraf = $_REQUEST['oraf'];
+        if ($_REQUEST['oraf'] != "")
+            $oraf = $_REQUEST['oraf'];
 
 
     $descrizione = "";
@@ -27,10 +29,9 @@ if (isset($_REQUEST['ok'])) {
     if (isset($_REQUEST['utente']))
         $utente = $_REQUEST['utente'];
 
-    $ordine = "";
+    $ordine = "sala";
     if (isset($_REQUEST['ordine']))
         $ordine = $_REQUEST['ordine'];
-
 
     $inizio = $data . " " . $orai;
     $fine = $data . " " . $oraf;
@@ -173,12 +174,12 @@ if (isset($_REQUEST['ok'])) {
             </div>
             <div class="col-sm-2">
                 <label class="radio-inline">
-                    <input type="radio" name="ordine" value="0" checked>Sala
+                    <input type="radio" name="ordine" value="aula" checked>Sala
                 </label>
             </div>
             <div class="col-sm-2">
                 <label class="radio-inline">
-                    <input type="radio" name="ordine" value="1">Data
+                    <input type="radio" name="ordine" value="inizio">Data
                 </label>
             </div>
         </div>
@@ -201,10 +202,35 @@ if (isset($_REQUEST['ok'])) {
         while ($row = $report->fetch_assoc()) {
             array_push($result, $row);
         }
+
+        echo "<br><br><h1>Risultati </h1>";
     }
 
+    $aula = -1;
+    $date = -1;
     foreach ($result as $row) {
-        echo "<h1>" . $row['aula'] . "</h1>";
+        if ($ordine == "aula") {
+            if ($row['aula'] != $aula) {
+                echo "<h2> Aula " . $row['aula'] . ": " . $row['nome'] . "</h2>";
+                $aula = $row['aula'];
+            }
+        } else {
+            if (date("Y-m-d", strtotime($row['inizio'])) != $date) {
+                echo "<h2> Giorno " . date("Y-m-d", strtotime($row['inizio'])) . "</h2>";
+                $date = date("Y-m-d", strtotime($row['inizio']));
+            }
+        }
+
+        echo "<hr><b>Inizio:</b> " . $row['inizio'] . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+        echo "<b>Fine:</b> " . $row['fine'] . "<br><br>";
+
+        if ($ordine == "inizio")
+            echo "<b>Aula:</b> " . $row['aula'] . ": " . $row['nome'] . "<br><br>";
+
+
+        echo "<b>Dettagli:</b> " . $row['dettagli'] . "<br><br>";
+
+        echo "<a href='info?utente=" . $row['utente'] . "&aula=" . $row['aula'] . "&dettagli=" . $row['dettagli'] . "&inizio=" . $row['inizio'] . "&fine=" . $row['fine'] . "'>Informazioni <i class='fa fa-address-card-o' aria-hidden='true'></i></a>";
     }
 
     ?>
