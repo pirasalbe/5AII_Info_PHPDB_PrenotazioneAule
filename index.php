@@ -2,9 +2,10 @@
 include("script/recursive.php");
 
 //tipo
-$tipo = "Attrezzatura Informatica";
+if(!isset($_SESSION['tipo']))
+    $_SESSION['tipo'] = "Attrezzatura Informatica";
 if (isset($_REQUEST['tipo']))
-    $tipo = $_REQUEST['tipo'];
+    $_SESSION['tipo'] = $_REQUEST['tipo'];
 
 //visualizzazione
 if (!isset($_SESSION['calendar']))
@@ -60,6 +61,7 @@ if (isset($_REQUEST['aula']))
 
 $aula = $_SESSION['aula'];
 $date = $_SESSION['date'];
+$tipo = $_SESSION['tipo'];
 
 $calendar = $_SESSION['calendar'];
 
