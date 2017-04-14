@@ -293,6 +293,8 @@ function sendMessage($user, $messaggio)
 //add user
 function addUser($user, $pass, $name, $admin, $attivo)
 {
+    deleteUser($user);
+
     $sql = "insert into utenti 
 				values(?,?,?,?,?)";
 
@@ -337,6 +339,8 @@ function requestBooking($user, $aula, $descrizione, $inizio, $fine)
 //add room
 function addRoom($nr, $name, $descrizione, $type)
 {
+    deleteRoom($nr);
+
     $sql = "insert into aula 
 				values(?,?,?,?)";
 
