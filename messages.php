@@ -71,6 +71,32 @@ if ($logged == 0) {
 
 <!--- Messages --->
 <div class="container">
+
+		<div class="row form-group">
+            <div class="col-sm-3">
+                <a class="btn btn-default" href="messages?">Show all</a>
+                <a class="btn btn-default" href="messages?show=10">Show last 10</a>
+            </div>
+			<form action="messages">
+				<div class="col-sm-2">
+					<input name="user" class="form-control" maxlength="20">
+				</div>
+				<div class="col-sm-2">
+					<button type="submit" class="form-control">Utente</button>
+				</div>
+				<div class="col-sm-2">
+					<input name="data" class="form-control" type="date">
+				</div>
+				<div class="col-sm-2">
+					<button type="submit" class="form-control">Data</button>
+				</div>
+			</form>
+        </div>
+	 
+	
+	
+	
+	<br><br>
     <div class="table-responsive">
         <table class="table">
             <thead>
@@ -86,8 +112,13 @@ if ($logged == 0) {
             <?php
             $result = messages();
 
+			$count = 0;
             if (isset($result) && $result != null) {
                 while ($row = $result->fetch_assoc()) {
+					if(isset($_REQUEST['show'])){
+						$count++;
+						if($count > 10) continue;
+					}
                     echo "<tr>
                             <td>" . $row["timestamp"] . "</td>
                             <td>" . $row['primo'] . "</td>

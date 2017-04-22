@@ -288,7 +288,7 @@ function messages()
 //send message
 function sendMessage($user, $messaggio)
 {
-    $sql = "insert into messages 
+    $sql = "insert into messages(primo,secondo,messaggio,timestamp) 
 				values(?,?,?,?)";
 
     $conn = init();
