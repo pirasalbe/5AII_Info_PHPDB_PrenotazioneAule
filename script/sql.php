@@ -257,12 +257,16 @@ function rooms()
 }
 
 //messages list
-function messages()
+function messages($user)
 {
+	$where="";	
+	if($user!="-1")
+		$where = " || primo=? || secondo=? ";
+	
     $sql = "SELECT * 
 			FROM messages
-			where primo=? || secondo=?
-			order by secondo, timestamp";
+			where primo=? || secondo=?" . $where .
+			"order by secondo, timestamp";
 
     $conn = init();
 
@@ -271,7 +275,11 @@ function messages()
     if ($stmt = $conn->prepare($sql)) {
 
         /* bind parameters for markers */
-        $stmt->bind_param("ss", $_SESSION['user'], $_SESSION['user']);
+		if($user=="-1")
+			$stmt->bind_param("ss", $_SESSION['user'], $_SESSION['user']);
+		else
+			$stmt->bind_param("ssss", $_SESSION['user'], $_SESSION['user'], $user, $user);
+			
 
         /* execute query */
         $stmt->execute();

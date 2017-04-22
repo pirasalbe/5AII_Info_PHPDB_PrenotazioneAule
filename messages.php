@@ -74,7 +74,7 @@ if ($logged == 0) {
 
 		<div class="row form-group">
             <div class="col-sm-3">
-                <a class="btn btn-default" href="messages?">Show all</a>
+                <a class="btn btn-default" href="messages">Show all</a>
                 <a class="btn btn-default" href="messages?show=10">Show last 10</a>
             </div>
 			<form action="messages">
@@ -110,8 +110,12 @@ if ($logged == 0) {
 
             <tbody>
             <?php
-            $result = messages();
-
+			$user="-1";
+			if(isset($_REQUEST['user']))
+				$user=$_REQUEST['user'];
+			
+            $result = messages($user);
+			
 			$count = 0;
             if (isset($result) && $result != null) {
                 while ($row = $result->fetch_assoc()) {
