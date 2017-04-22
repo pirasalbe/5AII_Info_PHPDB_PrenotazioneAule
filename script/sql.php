@@ -1,5 +1,6 @@
 <?php
 
+$logged=0;
 
 $hours = array("07:45", "08:40", "09:35", "10:30",
     "11:40", "12:35", "13:30", "14:00",
@@ -26,8 +27,10 @@ function init()
 }
 
 //perform login
-function login($user, $pass)
+function login()
 {
+    global $logged;
+	
     $sql = "SELECT username, password FROM utenti where username=? and password=? and attivo='si'";
 
     $conn = init();
@@ -35,7 +38,7 @@ function login($user, $pass)
     if ($stmt = $conn->prepare($sql)) {
 
         /* bind parameters for markers */
-        $stmt->bind_param("ss", $user, $pass);
+        $stmt->bind_param("ss", $_SESSION['user'], $_SESSION['pass']);
 
         /* execute query */
         $stmt->execute();
@@ -45,12 +48,9 @@ function login($user, $pass)
 
         /* fetch value */
         if ($stmt->fetch()) {
-            $_SESSION['user'] = $user;
-            echo "Logged";
-            header("location: ../index");
+            $logged = 1;
         } else {
-            echo "Wrong password";
-            header("location: ../login");
+            $logged = 0;
         }
 
         /* close statement */
@@ -75,19 +75,6 @@ function signup($user, $pass, $name)
 
         /* execute query */
         $stmt->execute();
-
-        /* bind result variables */
-        $stmt->bind_result($user, $pass);
-
-        /* fetch value */
-        if ($stmt->fetch()) {
-            $_SESSION['user'] = $user;
-            echo "Logged";
-            header("location: ../index");
-        } else {
-            echo "Wrong password";
-            header("location: ../login");
-        }
 
         /* close statement */
         $stmt->close();
@@ -222,10 +209,7 @@ function report($utente, $dettagli, $aula, $inizio, $fine, $ordine)
 function users()
 {
     $sql = "SELECT * 
-			FROM utenti";
-
-    if (isset($_SESSION['user']))
-        " where username<>?";
+			FROM utenti where username<>?";
 
     $conn = init();
 
@@ -234,8 +218,7 @@ function users()
     if ($stmt = $conn->prepare($sql)) {
 
         /* bind parameters for markers */
-        if (isset($_SESSION['user']))
-            $stmt->bind_param("s", $_SESSION['user']);
+        $stmt->bind_param("s", $_SESSION['user']);
 
         /* execute query */
         $stmt->execute();

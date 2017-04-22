@@ -113,6 +113,15 @@ if ($logged == 1) {
                 <button type="submit" class="btn btn-default">Sign Up</button>
             </div>
         </div>
+	
+		<?php
+		
+		if(isset($_REQUEST['sign'])) echo "<div class='alert alert-success'>
+												<strong>Utente registrato!</strong> Attendere che l'amministratore attivi l'account per effettuare il login
+											</div>";
+
+		?>
+		
     </div>
 
 </form>

@@ -8,9 +8,7 @@ include("sql.php");
     exit();
 }*/
 
-$logged = 0;
-if (isset($_SESSION['user']))
-    $logged = '1';
+login();
 
 function printNavbar($admin)
 {

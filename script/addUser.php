@@ -2,7 +2,7 @@
 include("recursive.php");
 
 $user = $_REQUEST['username'];
-$pass = $_REQUEST['password'];
+$pass = hash("sha256", $_REQUEST['password']);
 $name = $_REQUEST['name'];
 
 if (isset($_REQUEST['admin']))

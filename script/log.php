@@ -1,9 +1,14 @@
 <?php
 include("recursive.php");
 
-$user = $_REQUEST['username'];
-$pass = $_REQUEST['password'];
+$_SESSION['user'] = $_REQUEST['username'];
+$_SESSION['pass'] = hash("sha256", $_REQUEST['password']);
 
-login($user, $pass);
+login();
+
+if($logged==1)
+	header("location: ../index");
+else
+	header("location: ../login");
 
 ?>
