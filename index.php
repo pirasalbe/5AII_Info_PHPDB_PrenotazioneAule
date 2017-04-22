@@ -466,16 +466,17 @@ if ($calendar == "month") {
                 echo "<td></td>";
 
 
-                echo "<td>";
+        echo "<td>" . $k . ":";
 
+		
         foreach ($bookings as $book) {
             if ($aula == $book['aula']) {
                 if (date("Y-m-d", strtotime(date("Y-m-", strtotime($date)) . $k)) == date("Y-m-d", strtotime($book['inizio'])))
-                    echo "<a href='info?utente=" . $book['utente'] . "&aula=" . $book['aula'] . "&dettagli=" . $book['dettagli'] . "&inizio=" . $book['inizio'] . "&fine=" . $book['fine'] . "'><i class='fa fa-address-card-o' aria-hidden='true'></i></a> ";
+                    echo " <a href='info?utente=" . $book['utente'] . "&aula=" . $book['aula'] . "&dettagli=" . $book['dettagli'] . "&inizio=" . $book['inizio'] . "&fine=" . $book['fine'] . "'><i class='fa fa-address-card-o' aria-hidden='true'></i></a> ";
             }
         }
 
-        echo "<a href='book?inizio=" . $hours[0] . "&fine=" . $hours[1] . "&data=" . date("Y-m-d", strtotime($inizio)) . "&aula=" . $aula . "'><i class='fa fa-plus-circle' aria-hidden='true'></i></a></td>";
+        echo " <a href='book?inizio=" . $hours[0] . "&fine=" . $hours[1] . "&data=" . date("Y-m-d", strtotime($inizio)) . "&aula=" . $aula . "'><i class='fa fa-plus-circle' aria-hidden='true'></i></a></td>";
 
         if (date("N", strtotime(date("Y-m-", strtotime($date)) . $k)) == 7)
             echo "</tr>";
