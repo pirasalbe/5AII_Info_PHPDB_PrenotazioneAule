@@ -10,8 +10,10 @@ if (isset($_REQUEST['tipo']))
 //visualizzazione
 if (!isset($_SESSION['calendar']))
     $_SESSION['calendar'] = "day";
-if (isset($_REQUEST['cal']))
-    $_SESSION['calendar'] = $_REQUEST['cal'];
+if (isset($_REQUEST['cal'])){
+	$_SESSION['calendar'] = $_REQUEST['cal'];
+	unset($_SESSION['date']);
+}
 
 if ($_SESSION['calendar'] == "day") {
     $inizio = date("Y-m-d") . " 00:00:01";
