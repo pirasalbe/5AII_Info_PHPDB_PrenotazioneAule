@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Creato il: Apr 14, 2017 alle 13:35
--- Versione del server: 10.1.21-MariaDB
--- Versione PHP: 7.1.1
+-- Generation Time: Apr 22, 2017 at 09:22 AM
+-- Server version: 10.1.16-MariaDB
+-- PHP Version: 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `aula`
+-- Table structure for table `aula`
 --
 
 CREATE TABLE `aula` (
@@ -34,7 +34,7 @@ CREATE TABLE `aula` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dump dei dati per la tabella `aula`
+-- Dumping data for table `aula`
 --
 
 INSERT INTO `aula` (`numero`, `nome`, `descrizione`, `type`) VALUES
@@ -52,7 +52,7 @@ INSERT INTO `aula` (`numero`, `nome`, `descrizione`, `type`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `messages`
+-- Table structure for table `messages`
 --
 
 CREATE TABLE `messages` (
@@ -66,7 +66,7 @@ CREATE TABLE `messages` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `prenotazioni`
+-- Table structure for table `prenotazioni`
 --
 
 CREATE TABLE `prenotazioni` (
@@ -80,7 +80,7 @@ CREATE TABLE `prenotazioni` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dump dei dati per la tabella `prenotazioni`
+-- Dumping data for table `prenotazioni`
 --
 
 INSERT INTO `prenotazioni` (`cod`, `utente`, `aula`, `dettagli`, `inizio`, `fine`, `attiva`) VALUES
@@ -89,60 +89,60 @@ INSERT INTO `prenotazioni` (`cod`, `utente`, `aula`, `dettagli`, `inizio`, `fine
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `utenti`
+-- Table structure for table `utenti`
 --
 
 CREATE TABLE `utenti` (
   `username` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL,
+  `password` varchar(128) NOT NULL,
   `admin` enum('si','no') NOT NULL DEFAULT 'no',
   `nome` varchar(20) NOT NULL,
   `attivo` enum('si','no') NOT NULL DEFAULT 'no'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dump dei dati per la tabella `utenti`
+-- Dumping data for table `utenti`
 --
 
 INSERT INTO `utenti` (`username`, `password`, `admin`, `nome`, `attivo`) VALUES
-('esterno1', 'rossiesterno1', 'no', 'Esterno', 'no'),
-('giuliopertile', 'banana', 'no', 'Giulio Pertile', 'si'),
-('pirasalbe', 'chicco70', 'si', 'Alberto Piras', 'si');
+('esterno2', '00f92437fac39095b06f11134ce8e624226bec76487d516cec438c15395ae228', 'no', 'Esterno 2', 'si'),
+('giuliopertile', '0df55addf230c0040da973a7a30da952d9c107bb055314a7d3bdba3335ec099d', 'no', 'Giulio Pertile', 'no'),
+('pirasalbe', '2db7cbcee0ceaf7f3ed31c3d278ec565481c4b2c4ae9f050661592bc46b7208d', 'si', 'Alberto Piras', 'si');
 
 --
--- Indici per le tabelle scaricate
+-- Indexes for dumped tables
 --
 
 --
--- Indici per le tabelle `aula`
+-- Indexes for table `aula`
 --
 ALTER TABLE `aula`
   ADD PRIMARY KEY (`numero`);
 
 --
--- Indici per le tabelle `messages`
+-- Indexes for table `messages`
 --
 ALTER TABLE `messages`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `prenotazioni`
+-- Indexes for table `prenotazioni`
 --
 ALTER TABLE `prenotazioni`
   ADD PRIMARY KEY (`cod`);
 
 --
--- Indici per le tabelle `utenti`
+-- Indexes for table `utenti`
 --
 ALTER TABLE `utenti`
   ADD PRIMARY KEY (`username`);
 
 --
--- AUTO_INCREMENT per le tabelle scaricate
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT per la tabella `messages`
+-- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
