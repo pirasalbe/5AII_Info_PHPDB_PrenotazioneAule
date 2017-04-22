@@ -16,7 +16,7 @@ if ($logged == 0) {
 
 <body>
 <!--- header --->
-<?php printNavbar(); ?>
+<?php printNavbar(false); ?>
 
 <br>
 
@@ -38,7 +38,8 @@ if ($logged == 0) {
 
                     if (isset($result) && $result != null) {
                         while ($row = $result->fetch_assoc()) {
-                            echo "<option value='" . $row["username"] . "'>" . $row["username"] . "</option>";
+							if($row['attivo']=="si")
+								echo "<option value='" . $row["username"] . "'>" . $row["username"] . "</option>";
                         }
                     }
 
