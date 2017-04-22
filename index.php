@@ -502,7 +502,7 @@ if ($calendar == "month") {
 
         </div>
         <div class="col-sm-2 alert-info">
-            Prenotato <i class='fa fa-bookmark' aria-hidden='true'></i>
+            Prenotato <i class='fa fa-address-card-o' aria-hidden='true'></i>
         </div>
     </div>
 </div>
