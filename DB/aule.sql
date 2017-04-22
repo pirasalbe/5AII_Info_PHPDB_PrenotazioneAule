@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2017 at 09:22 AM
+-- Generation Time: Apr 22, 2017 at 09:25 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -94,7 +94,7 @@ INSERT INTO `prenotazioni` (`cod`, `utente`, `aula`, `dettagli`, `inizio`, `fine
 
 CREATE TABLE `utenti` (
   `username` varchar(20) NOT NULL,
-  `password` varchar(128) NOT NULL,
+  `password` varchar(64) NOT NULL,
   `admin` enum('si','no') NOT NULL DEFAULT 'no',
   `nome` varchar(20) NOT NULL,
   `attivo` enum('si','no') NOT NULL DEFAULT 'no'
