@@ -260,12 +260,14 @@ function rooms()
 function messages($user)
 {
 	$where="";	
-	if($user!="-1")
-		$where = " || primo=? || secondo=? ";
+	if($user!="-1"){
+		$where = " && (primo like ? || secondo like ?) ";
+		$user = "%" . $user . "%";
+	}
 	
     $sql = "SELECT * 
 			FROM messages
-			where primo=? || secondo=?" . $where .
+			where (primo=? || secondo=?) " . $where .
 			"order by secondo, timestamp";
 
     $conn = init();

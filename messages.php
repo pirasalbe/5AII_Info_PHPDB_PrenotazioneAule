@@ -4,6 +4,10 @@ include("script/recursive.php");
 if ($logged == 0) {
     header("location: login");
 }
+	
+$uvalue="";
+if(isset($_REQUEST['user']))
+	$uvalue=$_REQUEST['user'];
 ?>
 
 <html>
@@ -79,7 +83,7 @@ if ($logged == 0) {
             </div>
 			<form action="messages">
 				<div class="col-sm-2">
-					<input name="user" class="form-control" maxlength="20">
+					<input name="user" class="form-control" maxlength="20" value="<?php echo $uvalue; ?>">
 				</div>
 				<div class="col-sm-2">
 					<button type="submit" class="form-control">Utente</button>
