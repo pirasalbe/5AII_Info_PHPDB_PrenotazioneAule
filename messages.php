@@ -82,17 +82,20 @@ if(isset($_REQUEST['user']))
                 <a class="btn btn-default" href="messages?show=10">Show last 10</a>
             </div>
 			<form action="messages">
+				<div class="col-sm-1">
+					<label for="user">Utente</label>
+				</div>
 				<div class="col-sm-2">
 					<input name="user" class="form-control" maxlength="20" value="<?php echo $uvalue; ?>">
 				</div>
-				<div class="col-sm-2">
-					<button type="submit" class="form-control">Utente</button>
+				<div class="col-sm-1">
+					<label for="data">Data</label>
 				</div>
 				<div class="col-sm-2">
 					<input name="data" class="form-control" type="date">
 				</div>
 				<div class="col-sm-2">
-					<button type="submit" class="form-control">Data</button>
+					<button type="submit" class="form-control">Cerca</button>
 				</div>
 			</form>
         </div>
