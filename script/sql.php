@@ -206,10 +206,16 @@ function report($utente, $dettagli, $aula, $inizio, $fine, $ordine)
 }
 
 //user list
-function users()
+function users($user)
 {
+	$where="";
+	if($user!="-1"){
+		$user = "%" . $user . "%";
+		$where = " && username like ? ";
+	}
+	
     $sql = "SELECT * 
-			FROM utenti where username<>?";
+			FROM utenti where username<>?" . $where;
 
     $conn = init();
 
@@ -218,7 +224,10 @@ function users()
     if ($stmt = $conn->prepare($sql)) {
 
         /* bind parameters for markers */
-        $stmt->bind_param("s", $_SESSION['user']);
+		if($user=="-1")
+			$stmt->bind_param("s", $_SESSION['user']);
+		else 
+			$stmt->bind_param("ss", $_SESSION['user'], $user);
 
         /* execute query */
         $stmt->execute();

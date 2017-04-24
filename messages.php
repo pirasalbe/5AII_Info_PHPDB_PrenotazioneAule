@@ -7,7 +7,11 @@ if ($logged == 0) {
 	
 $uvalue="";
 if(isset($_REQUEST['user']))
-	$uvalue=$_REQUEST['user'];	
+	$uvalue=$_REQUEST['user'];		
+
+$dvalue="";
+if(isset($_REQUEST['dest']))
+	$dvalue=$_REQUEST['dest'];	
 ?>
 
 <html>
@@ -28,6 +32,21 @@ if(isset($_REQUEST['user']))
 
 <!--- Send new message --->
 <div class="container">
+		
+	<div class="row form-group">
+		<form action="messages">
+			<div class="col-sm-2">
+				<input name="dest" class="form-control" maxlength="20" value="<?php echo $dvalue; ?>">
+			</div>
+			<div class="col-sm-2">
+				<button type="submit" class="form-control">Filtra utenti</button>
+			</div>
+			<div class="col-sm-2">
+				<a href="messages" class="btn btn-default">Togli filtri</a>
+			</div>
+		</form>
+	</div>
+
     <form action="script/sendMessage">
 
         <div class="row form-group">
@@ -37,8 +56,12 @@ if(isset($_REQUEST['user']))
             <div class="col-sm-4">
                 <select name="username" class="form-control">
                     <?php
-
-                    $result = users();
+					
+					$dest="-1";
+					if(isset($_REQUEST['dest']))
+						$dest=$_REQUEST['dest'];
+					
+                    $result = users($dest);
 
                     if (isset($result) && $result != null) {
                         while ($row = $result->fetch_assoc()) {
@@ -74,7 +97,9 @@ if(isset($_REQUEST['user']))
 <br>
 
 <!--- Messages --->
+
 <div class="container">
+	<p class="h1">Messaggi</p><br>
 
 		<div class="row form-group">
             <div class="col-sm-3">

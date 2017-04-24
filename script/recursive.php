@@ -36,7 +36,7 @@ function printNavbar($admin)
                 }
             }
 
-            $result = users();
+            $result = users("-1");
 
             if (isset($result) && $result != null) {
                 while ($row = $result->fetch_assoc()) {
