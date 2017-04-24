@@ -29,7 +29,7 @@ if (admin()) {
         }
     }
 
-    $result = users();
+    $result = users("-1");
     $count = 0;
 
     if (isset($result) && $result != null) {
@@ -106,7 +106,7 @@ if (admin()) {
                 <span class="badge">
 						<?php
 
-                        $result = messages("-1");
+                        $result = messages("-1","-1");
                         $cont = 0;
 
                         if (isset($result) && $result != null) {

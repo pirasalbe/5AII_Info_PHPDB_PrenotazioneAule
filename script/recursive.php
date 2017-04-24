@@ -49,6 +49,17 @@ function printNavbar($admin)
         }
     }
 
+	$result = messages("-1","-1");
+	$cont = 0;
+
+	if (isset($result) && $result != null) {
+		while ($row = $result->fetch_assoc()) {
+			$cont++;
+		}
+	}
+            
+	$user = $user . " <span class='badge'>" . $cont . "</span>";
+
     echo "<!--- header --->
 			<nav class='navbar navbar-default'>
 				<div class='container-fluid'>

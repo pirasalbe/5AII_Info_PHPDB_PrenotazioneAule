@@ -4,6 +4,11 @@ include("../script/recursive.php");
 if ($logged == 0 || !admin()) {
     header("location: ../index");
 }
+
+
+$uvalue="";
+if(isset($_REQUEST['user']))
+	$uvalue=$_REQUEST['user'];
 ?>
 
 <html>
@@ -76,6 +81,26 @@ if ($logged == 0 || !admin()) {
 
 <!--- Users --->
 <div class="container">
+	<p class="h1">Utenti</p><br>
+	
+	<div class="row form-group">
+			<form action="users">
+				<div class="col-sm-1">
+					<label for="user">Utente</label>
+				</div>
+				<div class="col-sm-2">
+					<input name="user" class="form-control" maxlength="20" value="<?php echo $uvalue; ?>">
+				</div>
+				<div class="col-sm-2">
+					<button type="submit" class="form-control">Cerca</button>
+				</div>
+				
+				<div class="col-sm-3">
+					<a class="btn btn-default" href="users">Mostra tutti</a>
+				</div>
+			</form>
+	</div>
+
     <div class="table-responsive">
         <table class="table">
             <thead>
@@ -90,7 +115,12 @@ if ($logged == 0 || !admin()) {
 
             <tbody>
             <?php
-            $result = users();
+			
+			$user="-1";
+			if(isset($_REQUEST['user']))
+				$user=$_REQUEST['user'];
+			
+            $result = users($user);
 
             if (isset($result) && $result != null) {
                 while ($row = $result->fetch_assoc()) {

@@ -103,8 +103,8 @@ if(isset($_REQUEST['dest']))
 
 		<div class="row form-group">
             <div class="col-sm-3">
-                <a class="btn btn-default" href="messages">Show all</a>
-                <a class="btn btn-default" href="messages?show=10">Show last 10</a>
+                <a class="btn btn-default" href="messages">Mostra tutti</a>
+                <a class="btn btn-default" href="messages?show=10">Mostra ultimi 10</a>
             </div>
 			<form action="messages">
 				<div class="col-sm-1">
