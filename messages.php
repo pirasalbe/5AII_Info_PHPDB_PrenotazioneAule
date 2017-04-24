@@ -7,7 +7,7 @@ if ($logged == 0) {
 	
 $uvalue="";
 if(isset($_REQUEST['user']))
-	$uvalue=$_REQUEST['user'];
+	$uvalue=$_REQUEST['user'];	
 ?>
 
 <html>
@@ -114,11 +114,13 @@ if(isset($_REQUEST['user']))
 
             <tbody>
             <?php
-			$user="-1";
+			$user=$data="-1";
 			if(isset($_REQUEST['user']))
 				$user=$_REQUEST['user'];
+			if(isset($_REQUEST['data']))
+				$data=$_REQUEST['data'];
 			
-            $result = messages($user);
+            $result = messages($user, $data);
 			
 			$count = 0;
             if (isset($result) && $result != null) {

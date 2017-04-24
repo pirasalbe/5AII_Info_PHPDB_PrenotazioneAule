@@ -257,12 +257,16 @@ function rooms()
 }
 
 //messages list
-function messages($user)
+function messages($user, $data)
 {
 	$where="";	
 	if($user!="-1"){
-		$where = " && (primo like ? || secondo like ?) ";
+		$where = $where . " && (primo like ? || secondo like ?) ";
 		$user = "%" . $user . "%";
+	}
+	if($data!="-1"){
+		$where = $where . " && (timestamp like ?) ";
+		$data = $data . "%";
 	}
 	
     $sql = "SELECT * 
@@ -277,10 +281,14 @@ function messages($user)
     if ($stmt = $conn->prepare($sql)) {
 
         /* bind parameters for markers */
-		if($user=="-1")
+		if($user=="-1" && $data=="-1")
 			$stmt->bind_param("ss", $_SESSION['user'], $_SESSION['user']);
-		else
+		else if($user!="-1" && $data == "-1")
 			$stmt->bind_param("ssss", $_SESSION['user'], $_SESSION['user'], $user, $user);
+		else if($user=="-1" && $data != "-1")
+			$stmt->bind_param("sss", $_SESSION['user'], $_SESSION['user'], $data);
+		else
+			$stmt->bind_param("sssss", $_SESSION['user'], $_SESSION['user'], $user, $user, $data);
 			
 
         /* execute query */
