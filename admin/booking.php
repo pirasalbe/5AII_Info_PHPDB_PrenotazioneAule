@@ -111,7 +111,7 @@ if (isset($_REQUEST['username']))
                 <span class="badge">
 						<?php
 
-                        $result = messages();
+                        $result = messages("-1","-1");
                         $cont = 0;
 
                         if (isset($result) && $result != null) {
