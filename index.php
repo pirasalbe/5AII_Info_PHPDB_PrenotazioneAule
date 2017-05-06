@@ -204,7 +204,7 @@ if ($calendar == "day") {
             foreach ($bookings as $book) {
                 if ($room == $book['aula'])
                     if (date("H:i", strtotime($book['inizio'])) <= $hour && date("H:i", strtotime($book['fine'])) >= $hours[$key + 1]) {
-                        echo "<td><a href='info?utente=" . $book['utente'] . "&aula=" . $book['aula'] . "&dettagli=" . $book['dettagli'] . "&inizio=" . $book['inizio'] . "&fine=" . $book['fine'] . "'><i class='fa fa-address-card-o' aria-hidden='true'></i></a><td>";
+                        echo "<td><a href='info?utente=" . $book['utente'] . "&aula=" . $book['aula'] . "&dettagli=" . $book['dettagli'] . "&inizio=" . $book['inizio'] . "&fine=" . $book['fine'] . "'><i class='fa fa-address-card-o' aria-hidden='true'></i></a></td>";
                         $null = false;
                     }
             }

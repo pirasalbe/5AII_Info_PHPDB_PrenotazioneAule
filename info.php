@@ -69,7 +69,7 @@ $fine = $_REQUEST['fine'];
         <div class="col-sm-4">
             <?php
 
-            $result = users();
+            $result = users("-2");
 
             if (isset($result) && $result != null) {
                 while ($row = $result->fetch_assoc()) {
