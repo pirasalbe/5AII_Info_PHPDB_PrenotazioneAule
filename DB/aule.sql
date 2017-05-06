@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2017 at 10:31 AM
+-- Generation Time: May 06, 2017 at 10:34 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -93,7 +93,7 @@ CREATE TABLE `prenotazioni` (
 --
 
 INSERT INTO `prenotazioni` (`cod`, `utente`, `aula`, `dettagli`, `inizio`, `fine`, `attiva`) VALUES
-(0, 'pirasalbe', 1, 'Prova', '2017-05-09 07:45:00', '2017-05-09 08:40:00', 'no');
+(1, 'pirasalbe', 1, 'Prova', '2017-05-09 07:45:00', '2017-05-09 08:40:00', 'no');
 
 -- --------------------------------------------------------
 
@@ -155,6 +155,11 @@ ALTER TABLE `utenti`
 --
 ALTER TABLE `messages`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `prenotazioni`
+--
+ALTER TABLE `prenotazioni`
+  MODIFY `cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
