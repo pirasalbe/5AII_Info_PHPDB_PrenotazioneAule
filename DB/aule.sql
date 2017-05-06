@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2017 at 09:25 AM
+-- Generation Time: May 06, 2017 at 10:31 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -63,6 +63,15 @@ CREATE TABLE `messages` (
   `timestamp` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `messages`
+--
+
+INSERT INTO `messages` (`id`, `primo`, `secondo`, `messaggio`, `timestamp`) VALUES
+(5, 'pirasalbe', 'esterno2', 'ciaone', '2017-04-22 07:50:46'),
+(6, 'pirasalbe', 'giuliopertile', ':)', '2017-04-24 07:52:21'),
+(7, 'pirasalbe', 'giuliopertile', ':(', '2017-04-22 07:52:21');
+
 -- --------------------------------------------------------
 
 --
@@ -84,7 +93,7 @@ CREATE TABLE `prenotazioni` (
 --
 
 INSERT INTO `prenotazioni` (`cod`, `utente`, `aula`, `dettagli`, `inizio`, `fine`, `attiva`) VALUES
-(0, 'giuliopertile', 2, 'prova', '2017-04-13 08:40:00', '2017-04-13 12:35:00', 'si');
+(0, 'pirasalbe', 1, 'Prova', '2017-05-09 07:45:00', '2017-05-09 08:40:00', 'no');
 
 -- --------------------------------------------------------
 
@@ -106,7 +115,7 @@ CREATE TABLE `utenti` (
 
 INSERT INTO `utenti` (`username`, `password`, `admin`, `nome`, `attivo`) VALUES
 ('esterno2', '00f92437fac39095b06f11134ce8e624226bec76487d516cec438c15395ae228', 'no', 'Esterno 2', 'si'),
-('giuliopertile', '0df55addf230c0040da973a7a30da952d9c107bb055314a7d3bdba3335ec099d', 'no', 'Giulio Pertile', 'no'),
+('giuliopertile', '0df55addf230c0040da973a7a30da952d9c107bb055314a7d3bdba3335ec099d', 'no', 'Giulio Pertile', 'si'),
 ('pirasalbe', '2db7cbcee0ceaf7f3ed31c3d278ec565481c4b2c4ae9f050661592bc46b7208d', 'si', 'Alberto Piras', 'si');
 
 --
@@ -145,7 +154,7 @@ ALTER TABLE `utenti`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

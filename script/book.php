@@ -20,6 +20,8 @@ if ($orai >= $oraf || !$of || !$oi) header("location: ../book?inizio=" . $orai .
 $inizio = date("Y-m-d H:i:s", strtotime($date . " " . $orai));
 $fine = date("Y-m-d H:i:s", strtotime($date . " " . $oraf));
 
+echo $user . " ". $aula . " ". $descrizione . " ". $inizio . " ". $fine;
+
 requestBooking($user, $aula, $descrizione, $inizio, $fine);
 
 header("location: ../index");
