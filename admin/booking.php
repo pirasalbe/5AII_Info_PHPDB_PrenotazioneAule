@@ -14,7 +14,7 @@ if (isset($_REQUEST['username']))
 <html>
 <head>
     <title>
-        Utenti
+        Prenotazioni
     </title>
     <?php printHeader(); ?>
 </head>
