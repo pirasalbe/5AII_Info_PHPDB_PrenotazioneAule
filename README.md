@@ -26,10 +26,3 @@ PHP: connessione al DB, Session/Cookie, interfaccia web. <br><br><br>
 
 
 <img src="DB/scheme.jpg" alt="schema">
-
-<br><br>
-Heroku: gigorawih@1rentcar.top <br>
-Password : no dog
-
-<br>
-<a href="https://prenotazioneaule.herokuapp.com/index.php"> Demo </a>
