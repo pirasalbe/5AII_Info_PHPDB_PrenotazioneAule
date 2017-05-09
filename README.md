@@ -35,3 +35,6 @@ Password : no dog
 
 <br>
 <a href="https://prenotazioneaule.herokuapp.com/index.php"> Demo </a>
+
+<br>
+<img src="DB/scheme.jpg" alt="schema">
