@@ -25,12 +25,7 @@ CSS, JavaScript, Html.<br>
 PHP: connessione al DB, Session/Cookie, interfaccia web. <br><br><br>
 
 
-<br><br>
 <img src="DB/scheme.jpg" alt="schema">
-
-
-** https://photos.google.com/photo/AF1QipNYNGlyZD9ASlnogDs7kG3dwsExMbqZMAvI_mmQ?hl=it <br>
-** https://www3.itisrossi.vi.it/web/index.php <br>
 
 <br><br>
 Heroku: gigorawih@1rentcar.top <br>
